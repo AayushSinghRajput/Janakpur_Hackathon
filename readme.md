@@ -1,2 +1,2 @@
 This is readme file.
-bisect test.
+bisect test.dff
