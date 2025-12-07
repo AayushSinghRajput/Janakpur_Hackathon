@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (token) {
-      setUser({ token }); // Optionally store decoded info if backend sends user details
+      setUser({ token }); 
     } else {
       setUser(null);
     }

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { removeToken } from '../utils/tokenHandler';
-import { Shield, LogOut, Home, FileText, LogIn, UserPlus } from 'lucide-react';
+import { Shield, LogOut, Home, FileText, LogIn, UserPlus, LayoutDashboard } from 'lucide-react';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -48,6 +48,17 @@ const Navbar = () => {
               <FileText className="h-4 w-4 group-hover:text-blue-400" />
               <span>Report</span>
             </Link>
+
+            {/* Dashboard Link - Only show if token exists */}
+            {token && (
+              <Link 
+                to="/dashboard" 
+                className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-gray-700 hover:text-green-300 transition-colors duration-200 group"
+              >
+                <LayoutDashboard className="h-4 w-4 group-hover:text-green-400" />
+                <span>Dashboard</span>
+              </Link>
+            )}
 
             {/* Conditional Auth Links */}
             <div className="flex items-center space-x-1 ml-2 pl-4 border-l border-gray-700">
@@ -110,6 +121,17 @@ const Navbar = () => {
               <span>Report</span>
             </Link>
 
+            {/* Dashboard Link - Only show if token exists (Mobile) */}
+            {token && (
+              <Link 
+                to="/dashboard" 
+                className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-700 hover:text-green-300 transition-colors duration-200"
+              >
+                <LayoutDashboard className="h-5 w-5" />
+                <span>Dashboard</span>
+              </Link>
+            )}
+
             {!token ? (
               <>
                 <Link 
@@ -141,7 +163,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-  );
+  );  
 };
 
 export default Navbar;
