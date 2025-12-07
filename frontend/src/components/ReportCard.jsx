@@ -1,41 +1,46 @@
-import { AlertTriangle, Calendar, MapPin, Eye, FileText, Clock, Shield, Users } from 'lucide-react';
+import { AlertTriangle, Calendar, MapPin, Eye, FileText, Clock, Shield, Users, CheckCircle } from 'lucide-react';
 
 const ReportCard = ({ report, onView }) => {
-  // Determine urgency colors and icons
+  // Determine urgency colors and icons for Normal and Emergency only
   const urgencyConfig = {
-    high: { 
+    emergency: { 
       color: 'bg-red-900/20 text-red-400 border-red-700/30', 
       icon: AlertTriangle, 
-      label: 'High Priority' 
+      label: 'Emergency' 
     },
-    medium: { 
-      color: 'bg-amber-900/20 text-amber-400 border-amber-700/30', 
-      icon: AlertTriangle, 
-      label: 'Medium Priority' 
-    },
-    low: { 
+    normal: { 
       color: 'bg-blue-900/20 text-blue-400 border-blue-700/30', 
       icon: Shield, 
-      label: 'Low Priority' 
+      label: 'Normal' 
     },
   };
 
   // Determine status colors
   const statusConfig = {
     pending: 'bg-amber-900/30 text-amber-400 border-amber-700/30',
-    reviewed: 'bg-green-900/30 text-green-400 border-green-700/30',
-    'in-progress': 'bg-blue-900/30 text-blue-400 border-blue-700/30',
-    resolved: 'bg-gray-800 text-gray-400 border-gray-700',
+    under_review: 'bg-blue-900/30 text-blue-400 border-blue-700/30',
+    action_taken: 'bg-purple-900/30 text-purple-400 border-purple-700/30',
+    resolved: 'bg-green-900/30 text-green-400 border-green-700/30',
+    archived: 'bg-gray-900/30 text-gray-400 border-gray-700/30',
   };
 
-  const UrgencyIcon = urgencyConfig[report.urgencyLevel?.toLowerCase()]?.icon || AlertTriangle;
-  const urgencyStyle = urgencyConfig[report.urgencyLevel?.toLowerCase()] || urgencyConfig.medium;
-  const statusStyle = statusConfig[report.status] || 'bg-gray-800 text-gray-400 border-gray-700';
+  // Convert urgencyLevel to lowercase for matching
+  const urgencyLevel = report.urgencyLevel?.toLowerCase() || 'normal';
+  const UrgencyIcon = urgencyConfig[urgencyLevel]?.icon || Shield;
+  const urgencyStyle = urgencyConfig[urgencyLevel] || urgencyConfig.normal;
+  
+  const statusStyle = statusConfig[report.status] || statusConfig.pending;
+  const statusLabel = report.status 
+    ? report.status.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())
+    : 'Pending';
 
   // Truncate description
   const truncatedDescription = report.description?.length > 120 
     ? report.description.substring(0, 120) + '...' 
     : report.description;
+
+  // Count evidence files
+  const evidenceCount = report.evidenceUrls?.length || 0;
 
   return (
     <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 p-6 mb-4 hover:border-blue-500/30 hover:bg-gray-800/70 transition-all duration-300 group cursor-pointer">
@@ -53,17 +58,23 @@ const ReportCard = ({ report, onView }) => {
                 <span className={`inline-flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-medium ${urgencyStyle.color} border`}>
                   <UrgencyIcon className="h-3 w-3" />
                   <span>{urgencyStyle.label}</span>
+                  {urgencyLevel === 'emergency' && (
+                    <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse ml-1"></div>
+                  )}
                 </span>
                 
                 {/* Status Badge */}
                 <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${statusStyle} border`}>
-                  {report.status?.replace('-', ' ') || 'Pending'}
+                  {statusLabel}
                 </span>
                 
-                {/* Incident Type */}
+                {/* Incident Type - Convert snake_case to Title Case */}
                 {report.incidentType && (
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-900/50 text-gray-300 border border-gray-700">
-                    {report.incidentType}
+                    {report.incidentType
+                      .split('_')
+                      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                      .join(' ')}
                   </span>
                 )}
               </div>
@@ -111,12 +122,12 @@ const ReportCard = ({ report, onView }) => {
             )}
 
             {/* Evidence Count */}
-            {report.evidenceCount > 0 && (
+            {evidenceCount > 0 && (
               <div className="flex items-center space-x-2">
                 <FileText className="h-4 w-4 text-blue-400 flex-shrink-0" />
                 <div>
                   <p className="text-xs text-gray-400">Evidence</p>
-                  <p className="text-sm text-white">{report.evidenceCount} files</p>
+                  <p className="text-sm text-white">{evidenceCount} file{evidenceCount !== 1 ? 's' : ''}</p>
                 </div>
               </div>
             )}
@@ -154,7 +165,7 @@ const ReportCard = ({ report, onView }) => {
           </div>
 
           {/* Additional Info */}
-          {report.victimPhoneNumber && report.consentToShareWithNGO && (
+          {report.PhoneNumber && report.consentToShareWithNGO && (
             <div className="mt-3 lg:mt-4 flex items-center justify-center lg:justify-end">
               <div className="flex items-center space-x-1 text-xs text-gray-400">
                 <Users className="h-3 w-3" />
@@ -165,19 +176,30 @@ const ReportCard = ({ report, onView }) => {
         </div>
       </div>
 
-      {/* Progress indicator for high priority */}
-      {report.urgencyLevel?.toLowerCase() === 'high' && (
+      {/* Emergency indicator for Emergency priority */}
+      {urgencyLevel === 'emergency' && (
         <div className="mt-4">
           <div className="flex items-center justify-between text-xs text-gray-400 mb-1">
-            <span>Requires immediate attention</span>
+            <div className="flex items-center space-x-2">
+              <AlertTriangle className="h-3 w-3 text-red-400" />
+              <span>Emergency case - Requires immediate attention</span>
+            </div>
             <span className="flex items-center">
               <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse mr-1"></div>
-              Urgent
+              Emergency Priority
             </span>
           </div>
           <div className="h-1 bg-gray-700 rounded-full overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-red-500 to-pink-500 w-1/3 animate-pulse"></div>
+            <div className="h-full bg-gradient-to-r from-red-500 via-red-600 to-red-500 w-1/2 animate-pulse"></div>
           </div>
+        </div>
+      )}
+
+      {/* Resolved indicator for resolved status */}
+      {report.status === 'resolved' && (
+        <div className="mt-4 flex items-center space-x-2 text-green-400 bg-green-900/20 rounded-lg p-2 border border-green-700/30">
+          <CheckCircle className="h-4 w-4" />
+          <span className="text-xs font-medium">This case has been resolved successfully</span>
         </div>
       )}
     </div>
