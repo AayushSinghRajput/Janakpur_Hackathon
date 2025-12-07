@@ -22,8 +22,9 @@
 # app/routers/chat.py
 
 from fastapi import APIRouter
-from schemas.chat import ChatRequest, ChatResponse
+from schemas.chat import ChatRequest, ChatResponse, ClassifyRequest, ClassifyResponse
 from core.chat import ask_chatbot
+from core.classifier import classify_single_label
 
 router = APIRouter()
 
@@ -32,3 +33,9 @@ router = APIRouter()
 def chat_with_bot(payload: ChatRequest):
     answer = ask_chatbot(payload.session_id, payload.message)
     return ChatResponse(reply=answer)
+
+
+@router.post("/classify", response_model=ClassifyResponse)
+def classify_route(payload: ClassifyRequest):
+    category = classify_single_label(payload.text)
+    return ClassifyResponse(reply=category)
