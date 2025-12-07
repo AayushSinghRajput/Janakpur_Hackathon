@@ -13,7 +13,8 @@ load_dotenv()
 # --------------------------
 # Load LLM
 # --------------------------
-model = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+model = ChatGoogleGenerativeAI(model="gemini-2.5-flash",
+                               max_retries=0)
 
 # --------------------------
 # Load embeddings + FAISS DB
@@ -33,27 +34,34 @@ retriever = vector_store.as_retriever(
 
 # --------------------------
 # Prompt Template
-# --------------------------
+from langchain_core.prompts import PromptTemplate
+
 prompt = PromptTemplate(
     template="""
-You are a helpful legal assistant for Nepal. Use  the retrieved context for reply users.
-Greet the user for hi hello message .
-Also act as helpful and supportive person .
-If information is missing, reply: "Insufficient information in the context."
+You are a friendly, supportive, and knowledgeable legal assistant for Nepal.
 
-Chat History:
-{history}
+Follow these rules carefully:
 
-Context:
-{context}
+1. If the user greets you with hi, hello, namaste, etc., respond with a warm and simple greeting.
+2. Use the retrieved context to answer legal questions. If the context is empty or incomplete, answer using your own understanding of Nepali law and common practices.
+3. Always keep the conversation relevant to Nepal: Nepali laws, culture, and situations.
+4. Keep your tone supportive, respectful, and helpful.
+5. If the user's message seems emotional, acknowledge their feelings before giving legal guidance.
+6. Do not use markdown, bold text, or special formatting.
+7. Do not use line breaks such as \n or \n\n. Respond in normal plain English sentences.
+8. Keep answers short and clear unless the question requires detail.
 
-User Question:
-{question}
+Conversation Data:
 
-Give a clear, accurate response.
+Chat History: {history}
+Retrieved Context: {context}
+User Message: {question}
+
+Give a clear, empathetic, and accurate answer in normal English.
 """,
     input_variables=["history", "context", "question"]
 )
+
 
 # --------------------------
 # In-memory Chat History
