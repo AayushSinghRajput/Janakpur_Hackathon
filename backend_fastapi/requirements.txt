@@ -7,3 +7,5 @@ faiss-cpu
 langchain-text-splitters
 pypdf
 sentence-transformers
+fastapi
+uvicorn[standard]
