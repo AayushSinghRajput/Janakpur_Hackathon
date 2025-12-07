@@ -83,8 +83,8 @@ const NGOProfilesPage = () => {
             key={i}
             className={`h-4 w-4 ${
               i < Math.floor(rating)
-                ? 'text-yellow-400 fill-yellow-400'
-                : 'text-gray-300'
+                ? 'text-amber-500 fill-amber-500'
+                : 'text-borders'
             }`}
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -92,7 +92,7 @@ const NGOProfilesPage = () => {
             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
           </svg>
         ))}
-        <span className="ml-2 text-sm text-gray-600">{rating.toFixed(1)}</span>
+        <span className="ml-2 text-sm text-secondary-text">{rating.toFixed(1)}</span>
       </div>
     );
   };
@@ -112,39 +112,39 @@ const NGOProfilesPage = () => {
 
   const getColorClasses = (color) => {
     const colorMap = {
-      blue: 'bg-blue-100 text-blue-600',
-      green: 'bg-green-100 text-green-600',
-      purple: 'bg-purple-100 text-purple-600',
-      orange: 'bg-orange-100 text-orange-600',
-      red: 'bg-red-100 text-red-600',
-      amber: 'bg-amber-100 text-amber-600'
+      blue: 'bg-primary-accent/10 text-primary-accent',
+      green: 'bg-success/10 text-success',
+      purple: 'bg-secondary-accent/10 text-secondary-accent',
+      orange: 'bg-amber-500/10 text-amber-600',
+      red: 'bg-error/10 text-error',
+      amber: 'bg-amber-500/10 text-amber-600'
     };
-    return colorMap[color] || 'bg-gray-100 text-gray-600';
+    return colorMap[color] || 'bg-borders text-secondary-text';
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-8 px-4">
+    <div className="min-h-screen bg-background py-8 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-6"
+            className="flex items-center gap-2 text-primary-accent hover:text-secondary-accent mb-6"
           >
             <ArrowLeft className="h-5 w-5" />
             Back to Report
           </button>
           
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-primary-accent to-secondary-accent rounded-full mb-4">
               <Shield className="h-8 w-8 text-white" />
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+            <h1 className="text-3xl md:text-4xl font-bold text-headings mb-2">
               Recommended Support Organizations
             </h1>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-secondary-text max-w-2xl mx-auto">
               Based on your report type, here are verified NGOs that specialize in helping with{' '}
-              <span className="font-semibold text-blue-600">
+              <span className="font-semibold text-primary-accent">
                 {getIncidentLabel(incidentType)}
               </span>
             </p>
@@ -157,8 +157,8 @@ const NGOProfilesPage = () => {
             </div>
             
             {!loading && ngos.length > 0 && (
-              <div className="bg-blue-50 px-4 py-2 rounded-lg">
-                <span className="text-blue-700 font-medium">
+              <div className="bg-primary-accent/10 px-4 py-2 rounded-lg">
+                <span className="text-primary-accent font-medium">
                   {ngos.length} Verified Organization{ngos.length !== 1 ? 's' : ''} Found
                 </span>
               </div>
@@ -169,26 +169,26 @@ const NGOProfilesPage = () => {
         {/* Loading State */}
         {loading && (
           <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
-            <p className="text-gray-600">Finding relevant support organizations...</p>
-            <p className="text-sm text-gray-500 mt-2">Matching your incident type: {incidentType}</p>
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-accent mb-4"></div>
+            <p className="text-secondary-text">Finding relevant support organizations...</p>
+            <p className="text-sm text-secondary-text mt-2">Matching your incident type: {incidentType}</p>
           </div>
         )}
 
         {/* Error State */}
         {error && !loading && (
-          <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center mb-8">
-            <p className="text-red-600 mb-4">{error}</p>
+          <div className="bg-error/10 border border-error/20 rounded-xl p-6 text-center mb-8">
+            <p className="text-error mb-4">{error}</p>
             <div className="flex flex-wrap gap-3 justify-center">
               <button
                 onClick={handleRetry}
-                className="px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200"
+                className="px-4 py-2 bg-error/20 text-error rounded-lg hover:bg-error/30"
               >
                 Try Again
               </button>
               <button
                 onClick={handleShowGeneralNGOs}
-                className="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200"
+                className="px-4 py-2 bg-primary-accent/20 text-primary-accent rounded-lg hover:bg-primary-accent/30"
               >
                 Show General NGOs
               </button>
@@ -198,16 +198,16 @@ const NGOProfilesPage = () => {
 
         {/* No NGOs Found */}
         {!loading && !error && ngos.length === 0 && (
-          <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-8 text-center mb-8">
-            <Shield className="h-12 w-12 text-yellow-500 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">No Specific NGOs Found</h3>
-            <p className="text-gray-600 mb-4">
+          <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-8 text-center mb-8">
+            <Shield className="h-12 w-12 text-amber-500 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-headings mb-2">No Specific NGOs Found</h3>
+            <p className="text-secondary-text mb-4">
               We couldn't find NGOs specifically for {getIncidentLabel(incidentType)}. 
               Showing general support organizations instead.
             </p>
             <button
               onClick={handleShowGeneralNGOs}
-              className="px-6 py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 font-medium"
+              className="px-6 py-3 bg-amber-500 text-white rounded-lg hover:bg-amber-600 font-medium"
             >
               Show General Support NGOs
             </button>
@@ -218,18 +218,18 @@ const NGOProfilesPage = () => {
         {!loading && ngos.length > 0 && (
           <>
             <div className="mb-8">
-              <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-100">
+              <div className="bg-gradient-to-r from-primary-accent/10 to-secondary-accent/10 rounded-2xl p-6 border border-borders">
                 <div className="flex flex-wrap justify-between items-center">
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-1">
+                    <h3 className="text-lg font-semibold text-headings mb-1">
                       {ngos.length} Verified Organizations Found
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-secondary-text">
                       All organizations are verified and ready to help you
                     </p>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600 mt-2 md:mt-0">
-                    <CheckCircle className="h-5 w-5 text-green-500" />
+                  <div className="flex items-center gap-2 text-sm text-secondary-text mt-2 md:mt-0">
+                    <CheckCircle className="h-5 w-5 text-success" />
                     <span>All organizations are verified</span>
                   </div>
                 </div>
@@ -246,31 +246,31 @@ const NGOProfilesPage = () => {
 
         {/* Safety Tips */}
         {!loading && (
-          <div className="mt-12 bg-gray-50 rounded-2xl p-8 border border-gray-200">
-            <h3 className="text-2xl font-bold text-gray-800 mb-6">Important Safety Information</h3>
+          <div className="mt-12 bg-borders/30 rounded-2xl p-8 border border-borders">
+            <h3 className="text-2xl font-bold text-headings mb-6">Important Safety Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {safetyTips.map((tip) => (
-                <div key={tip.id} className="bg-white p-6 rounded-xl shadow-sm">
+                <div key={tip.id} className="bg-background p-6 rounded-xl border border-borders shadow-sm">
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${getColorClasses(tip.color)}`}>
                     {getIcon(tip.icon)}
                   </div>
-                  <h4 className="font-semibold text-gray-800 mb-2">{tip.title}</h4>
-                  <p className="text-gray-600 text-sm">{tip.description}</p>
+                  <h4 className="font-semibold text-headings mb-2">{tip.title}</h4>
+                  <p className="text-secondary-text text-sm">{tip.description}</p>
                 </div>
               ))}
             </div>
             
             {/* Emergency Contact Section */}
-            <div className="mt-8 pt-6 border-t border-gray-200">
+            <div className="mt-8 pt-6 border-t border-borders">
               <div className="flex flex-col md:flex-row justify-between items-center">
                 <div>
-                  <h4 className="font-bold text-gray-800 mb-1">Need Immediate Help?</h4>
-                  <p className="text-gray-600">Emergency services are available 24/7</p>
+                  <h4 className="font-bold text-headings mb-1">Need Immediate Help?</h4>
+                  <p className="text-secondary-text">Emergency services are available 24/7</p>
                 </div>
                 <div className="mt-4 md:mt-0">
                   <a
                     href="tel:100"
-                    className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium flex items-center gap-2"
+                    className="px-6 py-3 bg-error text-white rounded-lg hover:bg-error/90 font-medium flex items-center gap-2"
                   >
                     <AlertTriangle className="h-5 w-5" />
                     Emergency: 100
@@ -283,7 +283,7 @@ const NGOProfilesPage = () => {
 
         {/* Footer Note */}
         {!loading && (
-          <div className="mt-8 text-center text-gray-500 text-sm">
+          <div className="mt-8 text-center text-secondary-text text-sm">
             <p>
               Need help choosing? You can contact multiple organizations to find the best fit for your needs.
             </p>

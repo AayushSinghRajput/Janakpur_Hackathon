@@ -38,55 +38,55 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-[#f8f5fa] via-[#f8f5fa]/95 to-[#f8f5fa] flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         {/* Logo & Header */}
         <div className="text-center">
-          <div className="mx-auto w-20 h-20 bg-blue-600/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-blue-500/30 mb-6">
-            <Shield className="h-10 w-10 text-blue-400" />
+          <div className="mx-auto w-20 h-20 bg-[#7c3aed]/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-[#7c3aed]/30 mb-6">
+            <Shield className="h-10 w-10 text-[#7c3aed]" />
           </div>
           <div className="space-y-2">
-            <h2 className="text-4xl font-bold text-white">
+            <h2 className="text-4xl font-bold text-[#2a2a3c]">
               NGO{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#7c3aed] to-[#5b21b6] bg-clip-text text-transparent">
                 Portal
               </span>
             </h2>
-            <p className="text-gray-400 text-lg">
+            <p className="text-[#6b7280] text-lg">
               Secure Access to Reports Dashboard
             </p>
           </div>
         </div>
 
         {/* Security Badge */}
-        <div className="mt-8 bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700">
+        {/* <div className="mt-8 bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-[#e5e0eb] shadow-sm">
           <div className="flex items-center justify-center space-x-3">
-            <Lock className="h-5 w-5 text-green-400" />
-            <span className="text-sm text-gray-300">
+            <Lock className="h-5 w-5 text-[#059669]" />
+            <span className="text-sm text-[#4a3366]">
               Multi-factor authentication ready
             </span>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-lg">
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-700 p-8">
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-[#e5e0eb] p-8">
           {/* Form Header */}
           <div className="flex items-center justify-center space-x-3 mb-8">
-            <Building className="h-6 w-6 text-blue-400" />
-            <h3 className="text-2xl font-bold text-white">
+            <Building className="h-6 w-6 text-[#7c3aed]" />
+            <h3 className="text-2xl font-bold text-[#2a2a3c]">
               Organization Login
             </h3>
           </div>
 
           {/* Error Message */}
           {error && (
-            <div className="mb-6 p-4 bg-red-900/20 border border-red-700/30 rounded-xl">
+            <div className="mb-6 p-4 bg-[#dc2626]/10 border border-[#dc2626]/30 rounded-xl">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-red-600/20 rounded-full flex items-center justify-center">
-                  <Lock className="h-4 w-4 text-red-400" />
+                <div className="w-8 h-8 bg-[#dc2626]/20 rounded-full flex items-center justify-center">
+                  <Lock className="h-4 w-4 text-[#dc2626]" />
                 </div>
-                <p className="text-red-300 text-sm font-medium">{error}</p>
+                <p className="text-[#dc2626] text-sm font-medium">{error}</p>
               </div>
             </div>
           )}
@@ -94,15 +94,15 @@ const Login = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email Field */}
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-[#4a3366] mb-2">
                 <div className="flex items-center space-x-2">
-                  <Mail className="h-4 w-4 text-blue-400" />
+                  <Mail className="h-4 w-4 text-[#7c3aed]" />
                   <span>Organization Email</span>
                 </div>
               </label>
               <div className="relative">
                 <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                  <Mail className="h-5 w-5 text-gray-400" />
+                  <Mail className="h-5 w-5 text-[#6b7280]" />
                 </div>
                 <InputField
                   label=""
@@ -112,22 +112,22 @@ const Login = () => {
                   onChange={handleChange}
                   required
                   placeholder="admin@your-ngo.org"
-                  className="bg-gray-900/50 border-gray-700 focus:border-blue-500 focus:ring-blue-500/20 pl-12"
+                  className="bg-[#f8f5fa] border-[#e5e0eb] focus:border-[#7c3aed] focus:ring-[#7c3aed]/20 pl-12 text-[#2a2a3c]"
                 />
               </div>
             </div>
 
             {/* Password Field */}
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-[#4a3366] mb-2">
                 <div className="flex items-center space-x-2">
-                  <Lock className="h-4 w-4 text-blue-400" />
+                  <Lock className="h-4 w-4 text-[#7c3aed]" />
                   <span>Password</span>
                 </div>
               </label>
               <div className="relative">
                 <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                  <Lock className="h-5 w-5 text-gray-400" />
+                  <Lock className="h-5 w-5 text-[#6b7280]" />
                 </div>
                 <InputField
                   label=""
@@ -137,12 +137,12 @@ const Login = () => {
                   onChange={handleChange}
                   required
                   placeholder="••••••••"
-                  className="bg-gray-900/50 border-gray-700 focus:border-blue-500 focus:ring-blue-500/20 pl-12 pr-12"
+                  className="bg-[#f8f5fa] border-[#e5e0eb] focus:border-[#7c3aed] focus:ring-[#7c3aed]/20 pl-12 pr-12 text-[#2a2a3c]"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-400"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#6b7280] hover:text-[#7c3aed]"
                 >
                   {showPassword ? (
                     <EyeOff className="h-5 w-5" />
@@ -154,7 +154,7 @@ const Login = () => {
               <div className="flex justify-end mt-2">
                 <button
                   type="button"
-                  className="text-sm text-blue-400 hover:text-blue-300 transition-colors"
+                  className="text-sm text-[#7c3aed] hover:text-[#5b21b6] transition-colors font-medium"
                 >
                   Forgot Password?
                 </button>
@@ -165,7 +165,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center space-x-3 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 disabled:from-gray-600 disabled:to-gray-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-[1.02] disabled:transform-none mt-6"
+              className="w-full flex items-center justify-center space-x-3 bg-gradient-to-r from-[#7c3aed] to-[#5b21b6] hover:from-[#8b5cf6] hover:to-[#6d28d9] disabled:from-[#e5e0eb] disabled:to-[#d1c4e9] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-[1.02] disabled:transform-none disabled:cursor-not-allowed mt-6 shadow-lg hover:shadow-xl hover:shadow-[#7c3aed]/20"
             >
               {loading ? (
                 <>
@@ -181,22 +181,22 @@ const Login = () => {
             </button>
 
             {/* Demo Note */}
-            <div className="mt-6 p-4 bg-gray-900/50 rounded-xl border border-gray-700">
-              <p className="text-sm text-gray-400 text-center">
-                <span className="text-blue-400 font-medium">Demo Access:</span>{" "}
+            <div className="mt-6 p-4 bg-[#f8f5fa] rounded-xl border border-[#e5e0eb] shadow-sm">
+              <p className="text-sm text-[#4a3366] text-center">
+                <span className="text-[#7c3aed] font-medium">Demo Access:</span>{" "}
                 Use your registered NGO credentials
               </p>
             </div>
           </form>
 
           {/* Register Link */}
-          <div className="mt-8 pt-6 border-t border-gray-700">
+          <div className="mt-8 pt-6 border-t border-[#e5e0eb]">
             <div className="text-center space-y-3">
-              <p className="text-gray-400">
+              <p className="text-[#6b7280]">
                 Don't have an organization account?
               </p>
               <Link to="/register">
-                <button className="w-full flex items-center justify-center space-x-2 bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 border border-gray-700 hover:border-gray-600">
+                <button className="w-full flex items-center justify-center space-x-2 bg-white hover:bg-[#f8f5fa] text-[#2a2a3c] px-8 py-3 rounded-xl font-semibold transition-all duration-300 border border-[#e5e0eb] hover:border-[#7c3aed]/50 shadow-sm hover:shadow-md">
                   <Building className="h-5 w-5" />
                   <span>Register Your NGO</span>
                 </button>
@@ -207,39 +207,39 @@ const Login = () => {
           {/* Security Footer */}
           <div className="mt-8 grid grid-cols-3 gap-4">
             <div className="text-center">
-              <div className="w-10 h-10 bg-gray-900/50 rounded-full flex items-center justify-center mx-auto mb-2">
-                <Shield className="h-5 w-5 text-green-400" />
+              <div className="w-10 h-10 bg-[#f8f5fa] rounded-full flex items-center justify-center mx-auto mb-2 shadow-sm">
+                <Shield className="h-5 w-5 text-[#059669]" />
               </div>
-              <p className="text-xs text-gray-400">Encrypted</p>
+              <p className="text-xs text-[#6b7280]">Encrypted</p>
             </div>
             <div className="text-center">
-              <div className="w-10 h-10 bg-gray-900/50 rounded-full flex items-center justify-center mx-auto mb-2">
-                <Lock className="h-5 w-5 text-blue-400" />
+              <div className="w-10 h-10 bg-[#f8f5fa] rounded-full flex items-center justify-center mx-auto mb-2 shadow-sm">
+                <Lock className="h-5 w-5 text-[#7c3aed]" />
               </div>
-              <p className="text-xs text-gray-400">Secure</p>
+              <p className="text-xs text-[#6b7280]">Secure</p>
             </div>
             <div className="text-center">
-              <div className="w-10 h-10 bg-gray-900/50 rounded-full flex items-center justify-center mx-auto mb-2">
-                <Building className="h-5 w-5 text-cyan-400" />
+              <div className="w-10 h-10 bg-[#f8f5fa] rounded-full flex items-center justify-center mx-auto mb-2 shadow-sm">
+                <Building className="h-5 w-5 text-[#4a3366]" />
               </div>
-              <p className="text-xs text-gray-400">Verified</p>
+              <p className="text-xs text-[#6b7280]">Verified</p>
             </div>
           </div>
         </div>
 
         {/* Bottom Note */}
         <div className="mt-8 text-center">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-[#6b7280]">
             By accessing the portal, you agree to our{" "}
-            <a href="/terms" className="text-blue-400 hover:text-blue-300">
+            <a href="/terms" className="text-[#7c3aed] hover:text-[#5b21b6] font-medium">
               Terms of Service
             </a>{" "}
             and{" "}
-            <a href="/privacy" className="text-blue-400 hover:text-blue-300">
+            <a href="/privacy" className="text-[#7c3aed] hover:text-[#5b21b6] font-medium">
               Privacy Policy
             </a>
           </p>
-          <div className="mt-4 flex items-center justify-center space-x-2 text-xs text-gray-600">
+          <div className="mt-4 flex items-center justify-center space-x-2 text-xs text-[#6b7280]">
             <Shield className="h-3 w-3" />
             <span>All access is logged for security purposes</span>
           </div>

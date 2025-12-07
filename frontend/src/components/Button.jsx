@@ -15,14 +15,14 @@ const Button = forwardRef(({
   ...props 
 }, ref) => {
   
-  const baseStyles = 'inline-flex items-center justify-center font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl';
+  const baseStyles = 'inline-flex items-center justify-center font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#f8f5fa] disabled:opacity-50 disabled:cursor-not-allowed rounded-xl';
   
   const variants = {
-    primary: 'bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl hover:shadow-blue-600/20 focus:ring-blue-500',
-    secondary: 'bg-gray-800 hover:bg-gray-700 text-white border border-gray-700 hover:border-gray-600 focus:ring-gray-500',
-    danger: 'bg-gradient-to-r from-red-600 to-pink-500 hover:from-red-700 hover:to-pink-600 text-white shadow-lg hover:shadow-xl hover:shadow-red-600/20 focus:ring-red-500',
-    ghost: 'bg-transparent hover:bg-gray-800/50 text-gray-300 hover:text-white border border-gray-700 hover:border-gray-600 focus:ring-gray-500',
-    success: 'bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 text-white shadow-lg hover:shadow-xl hover:shadow-green-600/20 focus:ring-green-500',
+    primary: 'bg-gradient-to-r from-[#7c3aed] to-[#5b21b6] hover:from-[#8b5cf6] hover:to-[#6d28d9] text-white shadow-lg hover:shadow-xl hover:shadow-[#7c3aed]/20 focus:ring-[#7c3aed]',
+    secondary: 'bg-white hover:bg-[#f8f5fa] text-[#2a2a3c] border border-[#e5e0eb] hover:border-[#7c3aed]/50 shadow-sm hover:shadow-md focus:ring-[#7c3aed]',
+    danger: 'bg-gradient-to-r from-[#dc2626] to-[#b91c1c] hover:from-[#ef4444] hover:to-[#dc2626] text-white shadow-lg hover:shadow-xl hover:shadow-[#dc2626]/20 focus:ring-[#dc2626]',
+    ghost: 'bg-transparent hover:bg-[#e5e0eb] text-[#4a3366] hover:text-[#2a2a3c] border border-[#e5e0eb] hover:border-[#7c3aed]/50 focus:ring-[#7c3aed]',
+    success: 'bg-gradient-to-r from-[#059669] to-[#047857] hover:from-[#10b981] hover:to-[#059669] text-white shadow-lg hover:shadow-xl hover:shadow-[#059669]/20 focus:ring-[#059669]',
   };
   
   const sizes = {

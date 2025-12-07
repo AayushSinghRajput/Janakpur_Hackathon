@@ -52,23 +52,23 @@ const InputField = forwardRef(({
   const InputIcon = getIconByType();
 
   const variants = {
-    default: 'bg-gray-900/50 border-gray-700',
-    filled: 'bg-gray-800 border-gray-600',
-    ghost: 'bg-transparent border-gray-700',
+    default: 'bg-[#f8f5fa] border-[#e5e0eb]',
+    filled: 'bg-[#e5e0eb] border-[#d1c4e9]',
+    ghost: 'bg-transparent border-[#e5e0eb]',
   };
 
   return (
     <div className={`mb-6 ${fullWidth ? 'w-full' : ''}`}>
       {label && (
-        <label className="block text-sm font-medium text-gray-300 mb-2">
+        <label className="block text-sm font-medium text-[#4a3366] mb-2">
           {label}
-          {required && <span className="text-red-400 ml-1">*</span>}
+          {required && <span className="text-[#dc2626] ml-1">*</span>}
         </label>
       )}
 
       <div className="relative">
         {InputIcon && (
-          <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+          <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#6b7280]">
             {InputIcon}
           </div>
         )}
@@ -89,13 +89,13 @@ const InputField = forwardRef(({
             ${showPasswordToggle || error || success ? 'pr-12' : 'pr-4'}
             py-3.5
             ${variants[variant]}
-            border ${error ? 'border-red-500' : success ? 'border-green-500' : isFocused ? 'border-blue-500' : ''}
+            border ${error ? 'border-[#dc2626]' : success ? 'border-[#059669]' : isFocused ? 'border-[#7c3aed]' : ''}
             rounded-xl
-            text-white
-            placeholder-gray-500
+            text-[#2a2a3c]
+            placeholder-[#6b7280]
             focus:outline-none
             focus:ring-2
-            ${error ? 'focus:ring-red-500/20' : success ? 'focus:ring-green-500/20' : 'focus:ring-blue-500/20'}
+            ${error ? 'focus:ring-[#dc2626]/20' : success ? 'focus:ring-[#059669]/20' : 'focus:ring-[#7c3aed]/20'}
             transition-all duration-300
             disabled:opacity-50 disabled:cursor-not-allowed
             ${className}
@@ -105,17 +105,17 @@ const InputField = forwardRef(({
 
         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
           {error && !showPasswordToggle && (
-            <AlertCircle className="h-5 w-5 text-red-500" />
+            <AlertCircle className="h-5 w-5 text-[#dc2626]" />
           )}
           {success && !error && !showPasswordToggle && (
-            <CheckCircle className="h-5 w-5 text-green-500" />
+            <CheckCircle className="h-5 w-5 text-[#059669]" />
           )}
 
           {showPasswordToggle && type === 'password' && (
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="text-gray-400 hover:text-blue-400 transition-colors focus:outline-none"
+              className="text-[#6b7280] hover:text-[#7c3aed] transition-colors focus:outline-none"
               aria-label={showPassword ? "Hide password" : "Show password"}
             >
               {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
@@ -124,7 +124,7 @@ const InputField = forwardRef(({
         </div>
 
         {isFocused && !error && !success && (
-          <div className="absolute inset-0 border-2 border-blue-500/30 rounded-xl pointer-events-none -m-0.5"></div>
+          <div className="absolute inset-0 border-2 border-[#7c3aed]/30 rounded-xl pointer-events-none -m-0.5"></div>
         )}
       </div>
 
@@ -132,36 +132,36 @@ const InputField = forwardRef(({
         <div className="mt-2">
           {error && (
             <div className="flex items-center space-x-2">
-              <AlertCircle className="h-4 w-4 text-red-400 flex-shrink-0" />
-              <p className="text-sm text-red-400">{error}</p>
+              <AlertCircle className="h-4 w-4 text-[#dc2626] flex-shrink-0" />
+              <p className="text-sm text-[#dc2626]">{error}</p>
             </div>
           )}
           {success && !error && (
             <div className="flex items-center space-x-2">
-              <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-              <p className="text-sm text-green-400">{success}</p>
+              <CheckCircle className="h-4 w-4 text-[#059669] flex-shrink-0" />
+              <p className="text-sm text-[#059669]">{success}</p>
             </div>
           )}
           {helperText && !error && !success && (
-            <p className="text-sm text-gray-400">{helperText}</p>
+            <p className="text-sm text-[#6b7280]">{helperText}</p>
           )}
         </div>
       )}
 
       {type === 'password' && value && !error && !success && (
         <div className="mt-3">
-          <div className="flex items-center justify-between text-xs text-gray-400 mb-1">
+          <div className="flex items-center justify-between text-xs text-[#6b7280] mb-1">
             <span>Password strength:</span>
-            <span className={value.length < 8 ? 'text-amber-400' : 'text-green-400'}>
+            <span className={value.length < 8 ? 'text-[#4a3366]' : value.length < 12 ? 'text-[#5b21b6]' : 'text-[#059669]'}>
               {value.length < 8 ? 'Weak' : value.length < 12 ? 'Good' : 'Strong'}
             </span>
           </div>
-          <div className="h-1 bg-gray-700 rounded-full overflow-hidden">
+          <div className="h-1 bg-[#e5e0eb] rounded-full overflow-hidden">
             <div 
               className={`h-full ${
-                value.length < 8 ? 'bg-red-500' : 
-                value.length < 12 ? 'bg-amber-500' : 
-                'bg-green-500'
+                value.length < 8 ? 'bg-[#dc2626]' : 
+                value.length < 12 ? 'bg-[#5b21b6]' : 
+                'bg-[#059669]'
               }`}
               style={{ width: `${Math.min((value.length / 16) * 100, 100)}%` }}
             ></div>

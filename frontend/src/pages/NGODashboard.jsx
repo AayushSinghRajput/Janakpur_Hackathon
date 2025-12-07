@@ -284,17 +284,17 @@ const NGODashboard = () => {
   const getStatusColor = (status) => {
     switch (status) {
       case "pending":
-        return "bg-amber-900/30 text-amber-400";
+        return "bg-amber-500/20 text-amber-600 border-amber-500/30";
       case "under_review":
-        return "bg-blue-900/30 text-blue-400";
+        return "bg-primary-accent/20 text-primary-accent border-primary-accent/30";
       case "action_taken":
-        return "bg-purple-900/30 text-purple-400";
+        return "bg-secondary-accent/20 text-secondary-accent border-secondary-accent/30";
       case "resolved":
-        return "bg-green-900/30 text-green-400";
+        return "bg-success/20 text-success border-success/30";
       case "archived":
-        return "bg-gray-900/30 text-gray-400";
+        return "bg-borders text-secondary-text border-borders";
       default:
-        return "bg-gray-900/30 text-gray-400";
+        return "bg-borders text-secondary-text border-borders";
     }
   };
 
@@ -328,26 +328,26 @@ const NGODashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <Loader />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
+    <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-white">
+              <h1 className="text-3xl md:text-4xl font-bold text-headings">
                 NGO{" "}
-                <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-primary-accent to-secondary-accent bg-clip-text text-transparent">
                   Dashboard
                 </span>
               </h1>
-              <p className="text-gray-400 mt-2">
+              <p className="text-secondary-text mt-2">
                 Monitor and manage anonymous incident reports
               </p>
             </div>
@@ -363,58 +363,58 @@ const NGODashboard = () => {
 
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700">
+            <div className="bg-background rounded-2xl p-6 border border-borders shadow-lg">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm">Total Reports</p>
-                  <p className="text-3xl font-bold text-white">{stats.total}</p>
+                  <p className="text-secondary-text text-sm">Total Reports</p>
+                  <p className="text-3xl font-bold text-headings">{stats.total}</p>
                 </div>
-                <div className="w-12 h-12 bg-blue-600/20 rounded-full flex items-center justify-center">
-                  <FileText className="h-6 w-6 text-blue-400" />
+                <div className="w-12 h-12 bg-primary-accent/10 rounded-full flex items-center justify-center">
+                  <FileText className="h-6 w-6 text-primary-accent" />
                 </div>
               </div>
-              <div className="mt-4 flex items-center text-sm text-gray-400">
+              <div className="mt-4 flex items-center text-sm text-secondary-text">
                 <TrendingUp className="h-4 w-4 mr-1" />
                 <span>+12% this month</span>
               </div>
             </div>
 
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700">
+            <div className="bg-background rounded-2xl p-6 border border-borders shadow-lg">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm">Emergency Cases</p>
-                  <p className="text-3xl font-bold text-red-400">
+                  <p className="text-secondary-text text-sm">Emergency Cases</p>
+                  <p className="text-3xl font-bold text-error">
                     {stats.emergency}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-red-600/20 rounded-full flex items-center justify-center">
-                  <AlertOctagon className="h-6 w-6 text-red-400" />
+                <div className="w-12 h-12 bg-error/10 rounded-full flex items-center justify-center">
+                  <AlertOctagon className="h-6 w-6 text-error" />
                 </div>
               </div>
               <div className="mt-4 flex items-center">
-                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse mr-2"></div>
-                <span className="text-sm text-gray-400">
+                <div className="w-2 h-2 bg-error rounded-full animate-pulse mr-2"></div>
+                <span className="text-sm text-secondary-text">
                   Requires immediate attention
                 </span>
               </div>
             </div>
 
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700">
+            <div className="bg-background rounded-2xl p-6 border border-borders shadow-lg">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm">Action Taken</p>
-                  <p className="text-3xl font-bold text-purple-400">
+                  <p className="text-secondary-text text-sm">Action Taken</p>
+                  <p className="text-3xl font-bold text-secondary-accent">
                     {stats.action_taken}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-purple-600/20 rounded-full flex items-center justify-center">
-                  <CheckCircle className="h-6 w-6 text-purple-400" />
+                <div className="w-12 h-12 bg-secondary-accent/10 rounded-full flex items-center justify-center">
+                  <CheckCircle className="h-6 w-6 text-secondary-accent" />
                 </div>
               </div>
               <div className="mt-4">
-                <div className="h-1 bg-gray-700 rounded-full overflow-hidden">
+                <div className="h-1 bg-borders rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-purple-500"
+                    className="h-full bg-secondary-accent"
                     style={{
                       width: `${
                         stats.total
@@ -427,20 +427,20 @@ const NGODashboard = () => {
               </div>
             </div>
 
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700">
+            <div className="bg-background rounded-2xl p-6 border border-borders shadow-lg">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm">Pending Review</p>
-                  <p className="text-3xl font-bold text-amber-400">
+                  <p className="text-secondary-text text-sm">Pending Review</p>
+                  <p className="text-3xl font-bold text-amber-500">
                     {stats.pending}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-amber-600/20 rounded-full flex items-center justify-center">
-                  <Clock className="h-6 w-6 text-amber-400" />
+                <div className="w-12 h-12 bg-amber-500/10 rounded-full flex items-center justify-center">
+                  <Clock className="h-6 w-6 text-amber-500" />
                 </div>
               </div>
               <div className="mt-4">
-                <div className="h-1 bg-gray-700 rounded-full overflow-hidden">
+                <div className="h-1 bg-borders rounded-full overflow-hidden">
                   <div
                     className="h-full bg-amber-500"
                     style={{
@@ -455,15 +455,15 @@ const NGODashboard = () => {
           </div>
 
           {/* Filters and Search */}
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 mb-8">
+          <div className="bg-background rounded-2xl p-6 border border-borders shadow-lg mb-8">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="flex-1">
                 <div className="relative">
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-secondary-text" />
                   <input
                     type="text"
                     placeholder="Search reports by title, description, location, or type..."
-                    className="w-full pl-12 pr-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                    className="w-full pl-12 pr-4 py-3 bg-background border border-borders rounded-xl text-primary-text placeholder:text-secondary-text focus:outline-none focus:ring-2 focus:ring-primary-accent/20 focus:border-primary-accent"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
@@ -476,9 +476,9 @@ const NGODashboard = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 {/* Status Filter */}
                 <div className="flex items-center space-x-2">
-                  <Filter className="h-5 w-5 text-gray-400" />
+                  <Filter className="h-5 w-5 text-secondary-text" />
                   <select
-                    className="bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 w-full md:w-auto"
+                    className="bg-background border border-borders rounded-xl px-4 py-3 text-primary-text focus:outline-none focus:ring-2 focus:ring-primary-accent/20 focus:border-primary-accent w-full md:w-auto"
                     value={statusFilter}
                     onChange={(e) => setStatusFilter(e.target.value)}
                   >
@@ -493,9 +493,9 @@ const NGODashboard = () => {
 
                 {/* Urgency Filter */}
                 <div className="flex items-center space-x-2">
-                  <AlertTriangle className="h-5 w-5 text-gray-400" />
+                  <AlertTriangle className="h-5 w-5 text-secondary-text" />
                   <select
-                    className="bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 w-full md:w-auto"
+                    className="bg-background border border-borders rounded-xl px-4 py-3 text-primary-text focus:outline-none focus:ring-2 focus:ring-primary-accent/20 focus:border-primary-accent w-full md:w-auto"
                     value={urgencyFilter}
                     onChange={(e) => setUrgencyFilter(e.target.value)}
                   >
@@ -518,16 +518,16 @@ const NGODashboard = () => {
             {(searchTerm ||
               statusFilter !== "all" ||
               urgencyFilter !== "all") && (
-              <div className="mt-4 pt-4 border-t border-gray-700">
+              <div className="mt-4 pt-4 border-t border-borders">
                 <div className="flex items-center flex-wrap gap-2">
-                  <span className="text-sm text-gray-400">Active filters:</span>
+                  <span className="text-sm text-secondary-text">Active filters:</span>
 
                   {searchTerm && (
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-900/30 text-blue-300 border border-blue-700/30">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-accent/10 text-primary-accent border border-primary-accent/30">
                       Search: "{searchTerm}"
                       <button
                         onClick={() => setSearchTerm("")}
-                        className="ml-2 text-blue-200 hover:text-white"
+                        className="ml-2 text-primary-accent hover:text-secondary-accent"
                       >
                         ×
                       </button>
@@ -535,11 +535,11 @@ const NGODashboard = () => {
                   )}
 
                   {statusFilter !== "all" && (
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-amber-900/30 text-amber-300 border border-amber-700/30">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-amber-500/10 text-amber-600 border border-amber-500/30">
                       Status: {statusFilter.replace("_", " ")}
                       <button
                         onClick={() => setStatusFilter("all")}
-                        className="ml-2 text-amber-200 hover:text-white"
+                        className="ml-2 text-amber-600 hover:text-amber-700"
                       >
                         ×
                       </button>
@@ -550,8 +550,8 @@ const NGODashboard = () => {
                     <span
                       className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
                         urgencyFilter === "Emergency"
-                          ? "bg-red-900/30 text-red-300 border-red-700/30"
-                          : "bg-blue-900/30 text-blue-300 border-blue-700/30"
+                          ? "bg-error/10 text-error border-error/30"
+                          : "bg-primary-accent/10 text-primary-accent border-primary-accent/30"
                       }`}
                     >
                       Urgency: {urgencyFilter}
@@ -559,8 +559,8 @@ const NGODashboard = () => {
                         onClick={() => setUrgencyFilter("all")}
                         className={`ml-2 ${
                           urgencyFilter === "Emergency"
-                            ? "text-red-200 hover:text-white"
-                            : "text-blue-200 hover:text-white"
+                            ? "text-error hover:text-error/80"
+                            : "text-primary-accent hover:text-secondary-accent"
                         }`}
                       >
                         ×
@@ -576,23 +576,23 @@ const NGODashboard = () => {
         {/* Reports Grid */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-white">
+            <h2 className="text-xl font-bold text-headings">
               Incident Reports ({filteredReports.length})
             </h2>
-            <div className="text-sm text-gray-400">
+            <div className="text-sm text-secondary-text">
               Showing {filteredReports.length} of {reports.length} reports
             </div>
           </div>
 
           {filteredReports.length === 0 ? (
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-12 border border-gray-700 text-center">
-              <div className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Search className="h-8 w-8 text-gray-400" />
+            <div className="bg-background rounded-2xl p-12 border border-borders shadow-lg text-center">
+              <div className="w-16 h-16 bg-borders rounded-full flex items-center justify-center mx-auto mb-4">
+                <Search className="h-8 w-8 text-secondary-text" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">
+              <h3 className="text-xl font-bold text-headings mb-2">
                 No reports found
               </h3>
-              <p className="text-gray-400">
+              <p className="text-secondary-text">
                 Try adjusting your search or filters
               </p>
             </div>
@@ -610,186 +610,207 @@ const NGODashboard = () => {
         </div>
 
         {/* Security Footer */}
-        <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700">
+        <div className="bg-background rounded-2xl p-6 border border-borders shadow-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <Shield className="h-5 w-5 text-green-400" />
+              <Shield className="h-5 w-5 text-success" />
               <div>
-                <p className="text-sm font-medium text-white">
+                <p className="text-sm font-medium text-headings">
                   All reports are encrypted and anonymized
                 </p>
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-secondary-text">
                   Access is logged for security purposes
                 </p>
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <Users className="h-4 w-4 text-blue-400" />
-              <span className="text-sm text-gray-400">Last sync: Just now</span>
+              <Users className="h-4 w-4 text-primary-accent" />
+              <span className="text-sm text-secondary-text">Last sync: Just now</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Report Detail Modal */}
+      {/* Report Detail Modal - WITH LIGHT BACKGROUND COLORS */}
       {selectedReport && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-gray-800/90 backdrop-blur-sm rounded-2xl border border-gray-700 max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-primary-text/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-background rounded-2xl border-2 border-primary-accent/30 shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-8">
-              {/* Modal Header */}
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center space-x-3">
+              {/* Modal Header with light background */}
+              <div className="flex items-center justify-between mb-8 pb-6 border-b border-borders bg-gradient-to-r from-borders/30 to-background rounded-t-xl p-6 -m-8 mb-8">
+                <div className="flex items-center space-x-4">
                   <div
-                    className={`w-3 h-3 rounded-full ${
+                    className={`w-4 h-4 rounded-full flex-shrink-0 ${
                       selectedReport.urgencyLevel === "Emergency"
-                        ? "bg-red-500 animate-pulse"
-                        : "bg-blue-500"
+                        ? "bg-error animate-pulse"
+                        : "bg-primary-accent"
                     }`}
                   ></div>
-                  <h3 className="text-2xl font-bold text-white">
-                    {selectedReport.incidentTitle}
-                  </h3>
+                  <div>
+                    <h3 className="text-2xl font-bold text-headings leading-tight">
+                      {selectedReport.incidentTitle}
+                    </h3>
+                    <div className="flex items-center gap-2 mt-2">
+                      <span className="text-sm text-secondary-text">
+                        Report ID: {selectedReport.reportId}
+                      </span>
+                    </div>
+                  </div>
                 </div>
                 <button
                   onClick={() => setSelectedReport(null)}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="p-2 text-secondary-text hover:text-error hover:bg-error/10 rounded-lg transition-colors"
                 >
                   <XCircle className="h-6 w-6" />
                 </button>
               </div>
 
-              {/* Report ID */}
-              <div className="bg-gray-900/50 rounded-xl p-4 mb-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-gray-400">Report ID</p>
-                    <p className="font-mono font-bold text-white">
-                      {selectedReport.reportId}
-                    </p>
-                    <div className="flex items-center space-x-2 mt-1">
-                      <span className="text-xs px-2 py-1 bg-blue-900/30 text-blue-300 rounded">
-                        {selectedReport.incidentType
-                          ? selectedReport.incidentType
-                              .split("_")
-                              .map(
-                                (word) =>
-                                  word.charAt(0).toUpperCase() + word.slice(1)
-                              )
-                              .join(" ")
-                          : "General"}
-                      </span>
-                      <span
-                        className={`text-xs px-2 py-1 rounded ${
-                          selectedReport.urgencyLevel === "Emergency"
-                            ? "bg-red-900/30 text-red-300"
-                            : "bg-blue-900/30 text-blue-300"
-                        }`}
-                      >
-                        {selectedReport.urgencyLevel}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="text-sm">
-                    <span
-                      className={`px-3 py-1 rounded-full ${getStatusColor(
-                        selectedReport.status
-                      )}`}
-                    >
-                      {selectedReport.status?.replace("_", " ") || "pending"}
-                    </span>
-                  </div>
-                </div>
+              {/* Report Info Badges with light background */}
+              <div className="flex flex-wrap items-center gap-3 mb-8 bg-borders/20 p-4 rounded-xl">
+                <span
+                  className={`px-4 py-2 rounded-full text-sm font-medium ${
+                    selectedReport.urgencyLevel === "Emergency"
+                      ? "bg-error/20 text-error border border-error/30"
+                      : "bg-primary-accent/20 text-primary-accent border border-primary-accent/30"
+                  }`}
+                >
+                  {selectedReport.urgencyLevel}
+                </span>
+                
+                <span className="px-4 py-2 rounded-full text-sm font-medium bg-secondary-accent/20 text-secondary-accent border border-secondary-accent/30">
+                  {selectedReport.incidentType
+                    ? selectedReport.incidentType
+                        .split("_")
+                        .map(
+                          (word) =>
+                            word.charAt(0).toUpperCase() + word.slice(1)
+                        )
+                        .join(" ")
+                    : "General"}
+                </span>
+                
+                <span
+                  className={`px-4 py-2 rounded-full text-sm font-medium ${getStatusColor(
+                    selectedReport.status
+                  )}`}
+                >
+                  {selectedReport.status?.replace("_", " ") || "Pending"}
+                </span>
               </div>
 
-              {/* Details Grid */}
-              <div className="grid md:grid-cols-2 gap-6 mb-8">
-                <div className="space-y-4">
-                  <div>
-                    <div className="flex items-center space-x-2 mb-2">
-                      <Calendar className="h-5 w-5 text-cyan-400" />
-                      <span className="font-medium text-gray-300">
-                        Date & Time
-                      </span>
+              {/* Details Grid with enhanced backgrounds */}
+              <div className="grid md:grid-cols-2 gap-8 mb-10">
+                <div className="space-y-6">
+                  {/* Date & Time */}
+                  <div className="bg-gradient-to-br from-background to-borders/30 rounded-xl p-5 border border-borders">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <div className="w-10 h-10 bg-secondary-accent/20 rounded-lg flex items-center justify-center">
+                        <Calendar className="h-5 w-5 text-secondary-accent" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-headings">Date & Time</h4>
+                        <p className="text-primary-text font-medium">
+                          {new Date(selectedReport.dateTime).toLocaleString()}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-white">
-                      {new Date(selectedReport.dateTime).toLocaleString()}
-                    </p>
-                    <p className="text-sm text-gray-400">
-                      Reported on:{" "}
-                      {new Date(selectedReport.createdAt).toLocaleDateString()}
+                    <p className="text-sm text-secondary-text pl-13">
+                      Reported on: {new Date(selectedReport.createdAt).toLocaleDateString()}
                     </p>
                   </div>
-                  <div>
-                    <div className="flex items-center space-x-2 mb-2">
-                      <MapPin className="h-5 w-5 text-red-400" />
-                      <span className="font-medium text-gray-300">
-                        Location
-                      </span>
+
+                  {/* Location */}
+                  <div className="bg-gradient-to-br from-background to-borders/30 rounded-xl p-5 border border-borders">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-primary-accent/20 rounded-lg flex items-center justify-center">
+                        <MapPin className="h-5 w-5 text-primary-accent" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-headings">Location</h4>
+                        <p className="text-primary-text font-medium">
+                          {selectedReport.location || "Not specified"}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-white">{selectedReport.location}</p>
                   </div>
                 </div>
-                <div className="space-y-4">
+
+                <div className="space-y-6">
+                  {/* Contact Number */}
                   {selectedReport.PhoneNumber && (
-                    <div>
-                      <div className="flex items-center space-x-2 mb-2">
-                        <Phone className="h-5 w-5 text-green-400" />
-                        <span className="font-medium text-gray-300">
-                          Contact Number
-                        </span>
+                    <div className="bg-gradient-to-br from-background to-borders/30 rounded-xl p-5 border border-borders">
+                      <div className="flex items-center space-x-3 mb-3">
+                        <div className="w-10 h-10 bg-success/20 rounded-lg flex items-center justify-center">
+                          <Phone className="h-5 w-5 text-success" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-headings">Contact Number</h4>
+                          <p className="text-primary-text font-medium">
+                            {selectedReport.PhoneNumber}
+                          </p>
+                        </div>
                       </div>
-                      <p className="text-white">{selectedReport.PhoneNumber}</p>
+                      <p className="text-sm text-secondary-text pl-13">
+                        Provided for NGO contact
+                      </p>
                     </div>
                   )}
-                  <div>
-                    <div className="flex items-center space-x-2 mb-2">
-                      <Shield className="h-5 w-5 text-blue-400" />
-                      <span className="font-medium text-gray-300">
-                        Consent Status
-                      </span>
+
+                  {/* Consent Status */}
+                  <div className="bg-gradient-to-br from-background to-borders/30 rounded-xl p-5 border border-borders">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-primary-accent/20 rounded-lg flex items-center justify-center">
+                        <Shield className="h-5 w-5 text-primary-accent" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-headings">Consent Status</h4>
+                        <p className={`font-medium ${
+                          selectedReport.consentToShareWithNGO
+                            ? "text-success"
+                            : "text-amber-500"
+                        }`}>
+                          {selectedReport.consentToShareWithNGO
+                            ? "✓ Shared with NGOs"
+                            : "Anonymous only"}
+                        </p>
+                      </div>
                     </div>
-                    <p
-                      className={`font-medium ${
-                        selectedReport.consentToShareWithNGO
-                          ? "text-green-400"
-                          : "text-amber-400"
-                      }`}
-                    >
-                      {selectedReport.consentToShareWithNGO
-                        ? "Shared with NGOs ✓"
-                        : "Anonymous only"}
-                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Description */}
-              <div className="mb-8">
-                <h4 className="text-lg font-semibold text-white mb-3">
-                  Incident Description
-                </h4>
-                <div className="bg-gray-900/50 rounded-xl p-4">
-                  <p className="text-gray-300 whitespace-pre-line">
-                    {selectedReport.description}
+              {/* Description with enhanced background */}
+              <div className="mb-10">
+                <div className="flex items-center space-x-2 mb-4">
+                  <div className="w-1 h-6 bg-primary-accent rounded-full"></div>
+                  <h4 className="text-lg font-semibold text-headings">
+                    Incident Description
+                  </h4>
+                </div>
+                <div className="bg-gradient-to-br from-background to-borders/30 rounded-xl p-6 border border-borders">
+                  <p className="text-primary-text leading-relaxed whitespace-pre-line">
+                    {selectedReport.description || "No description provided."}
                   </p>
                 </div>
               </div>
 
-              {/* Evidence Section - Full width image container */}
+              {/* Evidence Section */}
               {selectedReport.evidenceUrls &&
                 selectedReport.evidenceUrls.length > 0 && (
-                  <div className="mb-8">
-                    <div className="flex items-center justify-between mb-4">
-                      <h4 className="text-lg font-semibold text-white">
-                        Evidence Files ({selectedReport.evidenceUrls.length})
-                      </h4>
-                      <div className="text-sm text-gray-400">
-                        Click to view full size
+                  <div className="mb-10">
+                    <div className="flex items-center justify-between mb-6 bg-borders/20 p-4 rounded-xl">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-8 bg-secondary-accent rounded-full"></div>
+                        <h4 className="text-lg font-semibold text-headings">
+                          Evidence Files ({selectedReport.evidenceUrls.length})
+                        </h4>
+                      </div>
+                      <div className="text-sm text-secondary-text">
+                        Click to preview
                       </div>
                     </div>
 
-                    {/* Full width evidence grid */}
-                    <div className="w-full space-y-4">
+                    <div className="w-full space-y-6">
                       {selectedReport.evidenceUrls.map((url, index) => {
                         const fileType = getFileType(url);
                         const IconComponent = getFileIcon(url);
@@ -801,98 +822,89 @@ const NGODashboard = () => {
                         return (
                           <div
                             key={index}
-                            className="w-full bg-gray-900/50 rounded-xl border border-gray-700 hover:border-blue-500/50 transition-all duration-300 overflow-hidden group cursor-pointer"
+                            className="w-full bg-gradient-to-br from-background to-borders/20 rounded-xl border-2 border-borders hover:border-primary-accent transition-all duration-300 overflow-hidden group cursor-pointer"
                             onClick={() => openEvidenceModal(index)}
                           >
-                            {/* Preview Container - Full width */}
-                            <div className="relative w-full bg-gray-800 overflow-hidden">
+                            {/* Preview Container */}
+                            <div className="relative w-full bg-gradient-to-br from-borders/30 to-borders/10 overflow-hidden">
                               {isImage ? (
-                                <>
-                                  {/* Full width Image Preview */}
-                                  <div className="relative w-full h-96">
-                                    <img
-                                      src={url}
-                                      alt={`Evidence ${index + 1}`}
-                                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                      onError={(e) => {
-                                        e.target.onerror = null;
-                                        e.target.src = `https://via.placeholder.com/1200x400/1f2937/9ca3af?text=${encodeURIComponent(
-                                          fileName
-                                        )}`;
-                                      }}
-                                    />
-                                    {/* Overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                                      <div className="flex items-center space-x-2 text-white">
-                                        <Maximize2 className="h-5 w-5" />
-                                        <span className="text-lg font-medium">
-                                          Click to view fullscreen
-                                        </span>
-                                      </div>
+                                <div className="relative w-full h-80">
+                                  <img
+                                    src={url}
+                                    alt={`Evidence ${index + 1}`}
+                                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                    onError={(e) => {
+                                      e.target.onerror = null;
+                                      e.target.src = `https://via.placeholder.com/1200x400/f8f5fa/7c3aed?text=${encodeURIComponent(
+                                        fileName
+                                      )}`;
+                                    }}
+                                  />
+                                  {/* Overlay */}
+                                  <div className="absolute inset-0 bg-gradient-to-t from-primary-text/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                    <div className="flex items-center space-x-2 text-white">
+                                      <Maximize2 className="h-5 w-5" />
+                                      <span className="text-lg font-medium">
+                                        Click to view fullscreen
+                                      </span>
                                     </div>
                                   </div>
-                                </>
+                                </div>
                               ) : isVideo ? (
-                                <>
-                                  {/* Full width Video Preview */}
-                                  <div className="relative w-full h-64 flex flex-col items-center justify-center p-8">
-                                    <div className="w-20 h-20 bg-blue-600/50 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:bg-blue-600/70 transition-colors">
-                                      <Play className="h-10 w-10 text-white" />
-                                    </div>
-                                    <div className="mt-6 text-center px-4">
-                                      <p className="text-xl text-white font-medium truncate w-full">
-                                        {fileName}
-                                      </p>
-                                      <p className="text-gray-300 mt-2">
-                                        Click to play video in fullscreen
-                                      </p>
-                                    </div>
+                                <div className="relative w-full h-64 flex flex-col items-center justify-center p-8">
+                                  <div className="w-20 h-20 bg-primary-accent/60 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:bg-primary-accent/80 transition-colors">
+                                    <Play className="h-10 w-10 text-white" />
                                   </div>
-                                </>
+                                  <div className="mt-6 text-center px-4">
+                                    <p className="text-xl text-headings font-medium truncate w-full">
+                                      {fileName}
+                                    </p>
+                                    <p className="text-secondary-text mt-2">
+                                      Click to play video in fullscreen
+                                    </p>
+                                  </div>
+                                </div>
                               ) : (
-                                <>
-                                  {/* Full width Document/File Preview */}
-                                  <div className="relative w-full h-48 flex flex-col items-center justify-center p-8">
-                                    <div className="w-20 h-20 bg-gray-700/50 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:bg-gray-700/70 transition-colors">
-                                      <IconComponent className="h-12 w-12 text-blue-400" />
-                                    </div>
-                                    <div className="mt-6 text-center">
-                                      <p className="text-xl text-white font-medium truncate w-full px-8">
-                                        {fileName}
-                                      </p>
-                                      <p className="text-gray-300 mt-2">
-                                        Click to download file
-                                      </p>
-                                    </div>
+                                <div className="relative w-full h-48 flex flex-col items-center justify-center p-8">
+                                  <div className="w-20 h-20 bg-borders/60 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:bg-borders/80 transition-colors">
+                                    <IconComponent className="h-12 w-12 text-primary-accent" />
                                   </div>
-                                </>
+                                  <div className="mt-6 text-center">
+                                    <p className="text-xl text-headings font-medium truncate w-full px-8">
+                                      {fileName}
+                                    </p>
+                                    <p className="text-secondary-text mt-2">
+                                      Click to download file
+                                    </p>
+                                  </div>
+                                </div>
                               )}
 
                               {/* File Type Badge */}
                               <div className="absolute top-4 left-4">
-                                <span className="text-sm px-3 py-1.5 bg-black/70 text-white rounded-lg">
+                                <span className="text-sm px-3 py-1.5 bg-headings/80 text-white rounded-lg">
                                   {fileType.toUpperCase()}
                                 </span>
                               </div>
 
                               {/* Evidence Number */}
                               <div className="absolute top-4 right-4">
-                                <span className="text-sm px-3 py-1.5 bg-black/70 text-white rounded-lg">
+                                <span className="text-sm px-3 py-1.5 bg-headings/80 text-white rounded-lg">
                                   Evidence #{index + 1}
                                 </span>
                               </div>
                             </div>
 
-                            {/* File Info */}
-                            <div className="p-6">
+                            {/* File Info with light background */}
+                            <div className="p-6 bg-gradient-to-br from-background to-borders/10">
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center space-x-3">
-                                  <IconComponent className="h-5 w-5 text-blue-400" />
+                                  <IconComponent className="h-5 w-5 text-primary-accent" />
                                   <div>
-                                    <span className="text-lg font-medium text-white">
+                                    <span className="text-lg font-medium text-headings">
                                       {fileName}
                                     </span>
-                                    <p className="text-sm text-gray-400 mt-1">
+                                    <p className="text-sm text-secondary-text mt-1">
                                       {fileType.charAt(0).toUpperCase() +
                                         fileType.slice(1)}{" "}
                                       file • Click to preview
@@ -904,7 +916,7 @@ const NGODashboard = () => {
                                     e.stopPropagation();
                                     window.open(url, "_blank");
                                   }}
-                                  className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors px-4 py-2 rounded-lg hover:bg-blue-600/10"
+                                  className="flex items-center space-x-2 text-primary-accent hover:text-secondary-accent transition-colors px-4 py-2 rounded-lg hover:bg-primary-accent/10"
                                 >
                                   <Download className="h-4 w-4" />
                                   <span>Open Directly</span>
@@ -918,140 +930,144 @@ const NGODashboard = () => {
                   </div>
                 )}
 
-              {/* Action Buttons */}
-              <div className="flex items-center justify-end space-x-4 pt-8 border-t border-gray-700 mt-8">
-                {/* Mark as Resolved Button - Only show if not already resolved */}
-                {selectedReport.status !== "resolved" && (
-                  <Button
-                    variant="secondary"
-                    icon={updatingStatus ? undefined : Check}
-                    onClick={handleMarkAsResolved}
-                    loading={updatingStatus}
-                    disabled={
-                      updatingStatus || selectedReport.status === "resolved"
-                    }
-                    className="min-w-[180px]"
-                  >
-                    {updatingStatus ? "Updating..." : "Mark as Resolved"}
-                  </Button>
-                )}
+              {/* Action Buttons with light background */}
+              <div className="pt-8 border-t border-borders bg-gradient-to-br from-borders/10 to-background p-6 rounded-xl">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    {/* Mark as Resolved Button */}
+                    {selectedReport.status !== "resolved" && (
+                      <Button
+                        variant="secondary"
+                        icon={updatingStatus ? undefined : Check}
+                        onClick={handleMarkAsResolved}
+                        loading={updatingStatus}
+                        disabled={
+                          updatingStatus || selectedReport.status === "resolved"
+                        }
+                        className="min-w-[180px]"
+                      >
+                        {updatingStatus ? "Updating..." : "Mark as Resolved"}
+                      </Button>
+                    )}
 
-                {/* Already Resolved Indicator */}
-                {selectedReport.status === "resolved" && (
-                  <div className="flex items-center space-x-2 px-4 py-3 bg-green-900/30 text-green-400 rounded-xl border border-green-700/30">
-                    <CheckCircle className="h-5 w-5" />
-                    <span className="font-medium">Already Resolved</span>
-                  </div>
-                )}
-
-                {/* Download Button with Dropdown that appears ABOVE */}
-                <div className="relative">
-                  <Button
-                    onClick={() => setShowDownloadOptions(!showDownloadOptions)}
-                    className="flex items-center space-x-2"
-                  >
-                    <Download className="h-4 w-4" />
-                    <span>Download Report</span>
-                    <ChevronDown
-                      className={`h-4 w-4 transition-transform ${
-                        showDownloadOptions ? "rotate-180" : ""
-                      }`}
-                    />
-                  </Button>
-
-                  {showDownloadOptions && (
-                    <div className="absolute bottom-full right-0 mb-2 w-56 bg-gray-800 border border-gray-700 rounded-xl shadow-2xl z-10">
-                      <div className="p-2">
-                        <button
-                          onClick={() => {
-                            handleDownloadReport(selectedReport, "pdf");
-                            setShowDownloadOptions(false);
-                          }}
-                          className="w-full text-left px-4 py-4 text-sm text-white hover:bg-gray-700/50 rounded-lg flex items-center space-x-3 transition-colors"
-                        >
-                          <div className="w-10 h-10 bg-red-600/20 rounded-lg flex items-center justify-center">
-                            <FileText className="h-5 w-5 text-red-400" />
-                          </div>
-                          <div>
-                            <div className="font-medium">Download as PDF</div>
-                            <div className="text-xs text-gray-400 mt-1">
-                              Standard report format
-                            </div>
-                          </div>
-                        </button>
-                        <button
-                          onClick={() => {
-                            handleDownloadReport(selectedReport, "html");
-                            setShowDownloadOptions(false);
-                          }}
-                          className="w-full text-left px-4 py-4 text-sm text-white hover:bg-gray-700/50 rounded-lg flex items-center space-x-3 transition-colors"
-                        >
-                          <div className="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center">
-                            <svg
-                              className="h-5 w-5 text-blue-400"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
-                            </svg>
-                          </div>
-                          <div>
-                            <div className="font-medium">Open in Browser</div>
-                            <div className="text-xs text-gray-400 mt-1">
-                              View & print directly
-                            </div>
-                          </div>
-                        </button>
-                        <button
-                          onClick={() => {
-                            handleDownloadReport(selectedReport, "text");
-                            setShowDownloadOptions(false);
-                          }}
-                          className="w-full text-left px-4 py-4 text-sm text-white hover:bg-gray-700/50 rounded-lg flex items-center space-x-3 transition-colors"
-                        >
-                          <div className="w-10 h-10 bg-green-600/20 rounded-lg flex items-center justify-center">
-                            <svg
-                              className="h-5 w-5 text-green-400"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
-                            </svg>
-                          </div>
-                          <div>
-                            <div className="font-medium">Download as Text</div>
-                            <div className="text-xs text-gray-400 mt-1">
-                              Plain text format
-                            </div>
-                          </div>
-                        </button>
+                    {/* Already Resolved Indicator */}
+                    {selectedReport.status === "resolved" && (
+                      <div className="flex items-center space-x-2 px-4 py-3 bg-success/10 text-success rounded-xl border border-success/30">
+                        <CheckCircle className="h-5 w-5" />
+                        <span className="font-medium">Already Resolved</span>
                       </div>
-                      {/* Arrow pointing to button */}
-                      <div className="absolute -bottom-1 right-4 w-3 h-3 bg-gray-800 transform rotate-45 border-r border-b border-gray-700"></div>
-                    </div>
-                  )}
-                </div>
-              </div>
+                    )}
+                  </div>
 
-              {/* Success Message */}
-              {selectedReport.status === "resolved" && (
-                <div className="mt-6 p-4 bg-green-900/20 border border-green-700/30 rounded-xl">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <div>
-                      <p className="text-green-300 font-medium">
-                        This report has been marked as resolved
-                      </p>
-                      <p className="text-green-400/70 text-sm mt-1">
-                        Last updated:{" "}
-                        {new Date(
-                          selectedReport.updatedAt || selectedReport.createdAt
-                        ).toLocaleString()}
-                      </p>
-                    </div>
+                  {/* Download Button with enhanced dropdown */}
+                  <div className="relative">
+                    <Button
+                      onClick={() => setShowDownloadOptions(!showDownloadOptions)}
+                      className="flex items-center space-x-2"
+                    >
+                      <Download className="h-4 w-4" />
+                      <span>Download Report</span>
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${
+                          showDownloadOptions ? "rotate-180" : ""
+                        }`}
+                      />
+                    </Button>
+
+                    {showDownloadOptions && (
+                      <div className="absolute bottom-full right-0 mb-2 w-56 bg-gradient-to-br from-background to-borders/20 border border-borders rounded-xl shadow-2xl z-10 overflow-hidden">
+                        <div className="p-2">
+                          <button
+                            onClick={() => {
+                              handleDownloadReport(selectedReport, "pdf");
+                              setShowDownloadOptions(false);
+                            }}
+                            className="w-full text-left px-4 py-4 text-sm text-primary-text hover:bg-primary-accent/10 rounded-lg flex items-center space-x-3 transition-colors bg-gradient-to-r from-background to-borders/10"
+                          >
+                            <div className="w-10 h-10 bg-error/20 rounded-lg flex items-center justify-center">
+                              <FileText className="h-5 w-5 text-error" />
+                            </div>
+                            <div>
+                              <div className="font-medium text-headings">Download as PDF</div>
+                              <div className="text-xs text-secondary-text mt-1">
+                                Standard report format
+                              </div>
+                            </div>
+                          </button>
+                          <button
+                            onClick={() => {
+                              handleDownloadReport(selectedReport, "html");
+                              setShowDownloadOptions(false);
+                            }}
+                            className="w-full text-left px-4 py-4 text-sm text-primary-text hover:bg-primary-accent/10 rounded-lg flex items-center space-x-3 transition-colors bg-gradient-to-r from-background to-borders/10"
+                          >
+                            <div className="w-10 h-10 bg-primary-accent/20 rounded-lg flex items-center justify-center">
+                              <svg
+                                className="h-5 w-5 text-primary-accent"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                              </svg>
+                            </div>
+                            <div>
+                              <div className="font-medium text-headings">Open in Browser</div>
+                              <div className="text-xs text-secondary-text mt-1">
+                                View & print directly
+                              </div>
+                            </div>
+                          </button>
+                          <button
+                            onClick={() => {
+                              handleDownloadReport(selectedReport, "text");
+                              setShowDownloadOptions(false);
+                            }}
+                            className="w-full text-left px-4 py-4 text-sm text-primary-text hover:bg-primary-accent/10 rounded-lg flex items-center space-x-3 transition-colors bg-gradient-to-r from-background to-borders/10"
+                          >
+                            <div className="w-10 h-10 bg-success/20 rounded-lg flex items-center justify-center">
+                              <svg
+                                className="h-5 w-5 text-success"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                              </svg>
+                            </div>
+                            <div>
+                              <div className="font-medium text-headings">Download as Text</div>
+                              <div className="text-xs text-secondary-text mt-1">
+                                Plain text format
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+                        {/* Arrow pointing to button */}
+                        <div className="absolute -bottom-1 right-4 w-3 h-3 bg-gradient-to-br from-background to-borders/20 transform rotate-45 border-r border-b border-borders"></div>
+                      </div>
+                    )}
                   </div>
                 </div>
-              )}
+
+                {/* Success Message */}
+                {selectedReport.status === "resolved" && (
+                  <div className="mt-6 p-4 bg-success/10 border border-success/30 rounded-xl">
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="h-5 w-5 text-success" />
+                      <div>
+                        <p className="text-success font-medium">
+                          This report has been marked as resolved
+                        </p>
+                        <p className="text-success/70 text-sm mt-1">
+                          Last updated:{" "}
+                          {new Date(
+                            selectedReport.updatedAt || selectedReport.createdAt
+                          ).toLocaleString()}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -1062,12 +1078,12 @@ const NGODashboard = () => {
         selectedReport &&
         selectedReport.evidenceUrls &&
         selectedEvidenceIndex !== null && (
-          <div className="fixed inset-0 bg-black/95 backdrop-blur-sm z-[60] flex items-center justify-center">
+          <div className="fixed inset-0 bg-primary-text/95 backdrop-blur-sm z-[60] flex items-center justify-center">
             <div className="relative w-full h-full flex flex-col">
               {/* Close Button */}
               <button
                 onClick={closeEvidenceModal}
-                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/70 hover:bg-black/90 rounded-full flex items-center justify-center text-white"
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-headings/70 hover:bg-headings/90 rounded-full flex items-center justify-center text-white"
               >
                 <X className="h-6 w-6" />
               </button>
@@ -1075,20 +1091,20 @@ const NGODashboard = () => {
               {/* Navigation Arrows */}
               <button
                 onClick={() => navigateEvidence(-1)}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-black/70 hover:bg-black/90 rounded-full flex items-center justify-center text-white"
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-headings/70 hover:bg-headings/90 rounded-full flex items-center justify-center text-white"
               >
                 ←
               </button>
               <button
                 onClick={() => navigateEvidence(1)}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-black/70 hover:bg-black/90 rounded-full flex items-center justify-center text-white"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-headings/70 hover:bg-headings/90 rounded-full flex items-center justify-center text-white"
               >
                 →
               </button>
 
               {/* Evidence Counter */}
               <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
-                <div className="px-4 py-2 bg-black/70 rounded-full text-white text-sm">
+                <div className="px-4 py-2 bg-headings/70 rounded-full text-white text-sm">
                   {selectedEvidenceIndex + 1} /{" "}
                   {selectedReport.evidenceUrls.length}
                 </div>
@@ -1107,7 +1123,7 @@ const NGODashboard = () => {
                         className="max-w-full max-h-[80vh] object-contain rounded-lg"
                         onError={(e) => {
                           e.target.onerror = null;
-                          e.target.src = `https://via.placeholder.com/1200x800/1f2937/9ca3af?text=Image+not+available`;
+                          e.target.src = `https://via.placeholder.com/1200x800/f8f5fa/7c3aed?text=Image+not+available`;
                         }}
                       />
                     </div>
@@ -1129,15 +1145,15 @@ const NGODashboard = () => {
                             e.target.style.display = "none";
                             const errorDiv = document.createElement("div");
                             errorDiv.className =
-                              "absolute inset-0 flex flex-col items-center justify-center bg-gray-900 rounded-lg";
+                              "absolute inset-0 flex flex-col items-center justify-center bg-primary-accent/20 rounded-lg";
                             errorDiv.innerHTML = `
-                            <div class="w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center mb-6">
-                              <svg class="h-10 w-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-20 h-20 bg-borders rounded-full flex items-center justify-center mb-6">
+                              <svg class="h-10 w-10 text-secondary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                               </svg>
                             </div>
-                            <p class="text-white text-xl font-medium mb-2">Video not available</p>
-                            <p class="text-gray-400">Try downloading the file directly</p>
+                            <p class="text-headings text-xl font-medium mb-2">Video not available</p>
+                            <p class="text-secondary-text">Try downloading the file directly</p>
                           `;
                             e.target.parentNode.appendChild(errorDiv);
                           }}
@@ -1145,17 +1161,17 @@ const NGODashboard = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-12 border border-gray-700 max-w-2xl mx-auto">
+                    <div className="bg-gradient-to-br from-borders/50 to-borders/30 backdrop-blur-sm rounded-xl p-12 border border-borders max-w-2xl mx-auto">
                       <div className="text-center">
-                        <div className="w-24 h-24 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-8">
-                          <FileText className="h-12 w-12 text-blue-400" />
+                        <div className="w-24 h-24 bg-primary-accent/20 rounded-full flex items-center justify-center mx-auto mb-8">
+                          <FileText className="h-12 w-12 text-primary-accent" />
                         </div>
-                        <h4 className="text-2xl font-bold text-white mb-4">
+                        <h4 className="text-2xl font-bold text-headings mb-4">
                           {selectedReport.evidenceUrls[selectedEvidenceIndex]
                             .split("/")
                             .pop()}
                         </h4>
-                        <p className="text-gray-400 text-lg mb-8">
+                        <p className="text-secondary-text text-lg mb-8">
                           This file type cannot be previewed. Please download it
                           to view.
                         </p>
@@ -1168,7 +1184,7 @@ const NGODashboard = () => {
                               "_blank"
                             )
                           }
-                          className="flex items-center space-x-3 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-medium mx-auto transition-colors"
+                          className="flex items-center space-x-3 bg-primary-accent hover:bg-secondary-accent text-white px-8 py-4 rounded-xl font-medium mx-auto transition-colors"
                         >
                           <Download className="h-5 w-5" />
                           <span className="text-lg">Download File</span>
@@ -1181,13 +1197,13 @@ const NGODashboard = () => {
 
               {/* File Info */}
               <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-                <div className="px-6 py-3 bg-black/70 backdrop-blur-sm rounded-xl text-white text-center">
+                <div className="px-6 py-3 bg-headings/70 backdrop-blur-sm rounded-xl text-white text-center">
                   <p className="font-medium text-lg truncate max-w-2xl">
                     {selectedReport.evidenceUrls[selectedEvidenceIndex]
                       .split("/")
                       .pop()}
                   </p>
-                  <p className="text-gray-300 text-sm mt-1">
+                  <p className="text-borders text-sm mt-1">
                     {getFileType(
                       selectedReport.evidenceUrls[selectedEvidenceIndex]
                     ).toUpperCase()}{" "}

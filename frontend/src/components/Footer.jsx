@@ -4,7 +4,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-gray-300 border-t border-gray-800">
+    <footer className="bg-[#2a2a3c] text-[#f8f5fa] border-t border-[#4a3366]">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -12,51 +12,51 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-[#7c3aed] rounded-lg flex items-center justify-center">
                 <Shield className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                <h3 className="text-xl font-bold bg-gradient-to-r from-[#7c3aed] to-[#5b21b6] bg-clip-text text-transparent">
                   AIRE Vault
                 </h3>
-                <p className="text-xs text-gray-400">Secure Anonymous Reporting</p>
+                <p className="text-xs text-[#6b7280]">Secure Anonymous Reporting</p>
               </div>
             </div>
-            <p className="text-sm text-gray-400 leading-relaxed">
+            <p className="text-sm text-[#6b7280] leading-relaxed">
               A trusted platform for anonymous incident reporting and secure evidence preservation. 
               Your safety and privacy are our highest priorities.
             </p>
             <div className="flex items-center space-x-2 pt-2">
-              <Lock className="h-4 w-4 text-green-400" />
-              <span className="text-xs text-gray-400">End-to-End Encrypted</span>
+              <Lock className="h-4 w-4 text-[#059669]" />
+              <span className="text-xs text-[#6b7280]">End-to-End Encrypted</span>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4 pb-2 border-b border-gray-800">Quick Links</h4>
+            <h4 className="text-lg font-semibold text-white mb-4 pb-2 border-b border-[#4a3366]">Quick Links</h4>
             <ul className="space-y-3">
               <li>
-                <a href="/report" className="flex items-center space-x-2 text-sm hover:text-blue-400 transition-colors duration-200">
-                  <span className="w-1 h-1 bg-blue-500 rounded-full"></span>
+                <a href="/report" className="flex items-center space-x-2 text-sm hover:text-[#7c3aed] transition-colors duration-200">
+                  <span className="w-1 h-1 bg-[#7c3aed] rounded-full"></span>
                   <span>Submit Report</span>
                 </a>
               </li>
               <li>
-                <a href="/login" className="flex items-center space-x-2 text-sm hover:text-blue-400 transition-colors duration-200">
-                  <span className="w-1 h-1 bg-blue-500 rounded-full"></span>
+                <a href="/login" className="flex items-center space-x-2 text-sm hover:text-[#7c3aed] transition-colors duration-200">
+                  <span className="w-1 h-1 bg-[#7c3aed] rounded-full"></span>
                   <span>NGO Login</span>
                 </a>
               </li>
               <li>
-                <a href="/register" className="flex items-center space-x-2 text-sm hover:text-blue-400 transition-colors duration-200">
-                  <span className="w-1 h-1 bg-blue-500 rounded-full"></span>
+                <a href="/register" className="flex items-center space-x-2 text-sm hover:text-[#7c3aed] transition-colors duration-200">
+                  <span className="w-1 h-1 bg-[#7c3aed] rounded-full"></span>
                   <span>NGO Registration</span>
                 </a>
               </li>
               <li>
-                <a href="/privacy" className="flex items-center space-x-2 text-sm hover:text-blue-400 transition-colors duration-200">
-                  <span className="w-1 h-1 bg-blue-500 rounded-full"></span>
+                <a href="/privacy" className="flex items-center space-x-2 text-sm hover:text-[#7c3aed] transition-colors duration-200">
+                  <span className="w-1 h-1 bg-[#7c3aed] rounded-full"></span>
                   <span>Privacy Policy</span>
                 </a>
               </li>
@@ -65,22 +65,22 @@ const Footer = () => {
 
           {/* Security Features */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4 pb-2 border-b border-gray-800">Security Features</h4>
+            <h4 className="text-lg font-semibold text-white mb-4 pb-2 border-b border-[#4a3366]">Security Features</h4>
             <ul className="space-y-3">
               <li className="flex items-center space-x-3">
-                <ShieldCheck className="h-4 w-4 text-green-400" />
+                <ShieldCheck className="h-4 w-4 text-[#059669]" />
                 <span className="text-sm">Military-Grade Encryption</span>
               </li>
               <li className="flex items-center space-x-3">
-                <Lock className="h-4 w-4 text-green-400" />
+                <Lock className="h-4 w-4 text-[#059669]" />
                 <span className="text-sm">Zero-Knowledge Architecture</span>
               </li>
               <li className="flex items-center space-x-3">
-                <Globe className="h-4 w-4 text-blue-400" />
+                <Globe className="h-4 w-4 text-[#7c3aed]" />
                 <span className="text-sm">No IP Tracking</span>
               </li>
               <li className="flex items-center space-x-3">
-                <Heart className="h-4 w-4 text-red-400" />
+                <Heart className="h-4 w-4 text-[#dc2626]" />
                 <span className="text-sm">Strict Anonymity Policy</span>
               </li>
             </ul>
@@ -88,21 +88,21 @@ const Footer = () => {
 
           {/* Contact/Support */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4 pb-2 border-b border-gray-800">Support</h4>
+            <h4 className="text-lg font-semibold text-white mb-4 pb-2 border-b border-[#4a3366]">Support</h4>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
-                <Mail className="h-5 w-5 text-gray-400 mt-1 flex-shrink-0" />
+                <Mail className="h-5 w-5 text-[#6b7280] mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-medium text-white">Technical Support</p>
-                  <a href="mailto:support@airevault.org" className="text-sm text-gray-400 hover:text-blue-400 transition-colors">
+                  <a href="mailto:support@airevault.org" className="text-sm text-[#6b7280] hover:text-[#7c3aed] transition-colors">
                     support@airevault.org
                   </a>
                 </div>
               </div>
               <div className="pt-4">
-                <p className="text-sm text-gray-400 mb-3">Available 24/7 for emergency reports</p>
-                <div className="inline-flex items-center px-3 py-1 rounded-full bg-gray-800 border border-gray-700">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                <p className="text-sm text-[#6b7280] mb-3">Available 24/7 for emergency reports</p>
+                <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#4a3366] border border-[#7c3aed]/30">
+                  <div className="w-2 h-2 bg-[#059669] rounded-full mr-2 animate-pulse"></div>
                   <span className="text-xs font-medium">System Operational</span>
                 </div>
               </div>
@@ -111,31 +111,31 @@ const Footer = () => {
         </div>
 
         {/* Trust Badges */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
+        <div className="mt-12 pt-8 border-t border-[#4a3366]">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
-                <div className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center border border-gray-700">
-                  <Shield className="h-5 w-5 text-green-400" />
+                <div className="w-10 h-10 bg-[#4a3366] rounded-lg flex items-center justify-center border border-[#7c3aed]/30">
+                  <Shield className="h-5 w-5 text-[#059669]" />
                 </div>
                 <div>
                   <p className="text-xs font-medium">GDPR Compliant</p>
-                  <p className="text-xs text-gray-400">Data Protection</p>
+                  <p className="text-xs text-[#6b7280]">Data Protection</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center border border-gray-700">
-                  <Lock className="h-5 w-5 text-blue-400" />
+                <div className="w-10 h-10 bg-[#4a3366] rounded-lg flex items-center justify-center border border-[#7c3aed]/30">
+                  <Lock className="h-5 w-5 text-[#7c3aed]" />
                 </div>
                 <div>
                   <p className="text-xs font-medium">256-bit SSL</p>
-                  <p className="text-xs text-gray-400">Secure Connection</p>
+                  <p className="text-xs text-[#6b7280]">Secure Connection</p>
                 </div>
               </div>
             </div>
             
             <div className="text-center md:text-right">
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-[#6b7280]">
                 Committed to making communities safer through technology.
               </p>
             </div>
@@ -144,32 +144,32 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="bg-gray-950 py-6">
+      <div className="bg-[#1a202c] py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center space-x-2">
-              <Heart className="h-4 w-4 text-red-400" />
-              <p className="text-sm">
+              <Heart className="h-4 w-4 text-[#dc2626]" />
+              <p className="text-sm text-[#6b7280]">
                 &copy; {currentYear} Anonymous Incident Reporting & Evidence Vault.
               </p>
             </div>
             
             <div className="flex items-center space-x-6">
-              <a href="/cookie-terms" className="text-xs text-gray-400 hover:text-blue-400 transition-colors">
+              <a href="/cookie-terms" className="text-xs text-[#6b7280] hover:text-[#7c3aed] transition-colors">
                 Terms of Service
               </a>
-              <a href="/privacy" className="text-xs text-gray-400 hover:text-blue-400 transition-colors">
+              <a href="/privacy" className="text-xs text-[#6b7280] hover:text-[#7c3aed] transition-colors">
                 Privacy Policy
               </a>
-              <a href="/cookie-terms" className="text-xs text-gray-400 hover:text-blue-400 transition-colors">
+              <a href="/cookie-terms" className="text-xs text-[#6b7280] hover:text-[#7c3aed] transition-colors">
                 Cookie Policy
               </a>
-              <a href="/security" className="text-xs text-gray-400 hover:text-blue-400 transition-colors">
+              <a href="/security" className="text-xs text-[#6b7280] hover:text-[#7c3aed] transition-colors">
                 Security Standards
               </a>
             </div>
             
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-[#6b7280]">
               All reports are treated with utmost confidentiality
             </p>
           </div>
