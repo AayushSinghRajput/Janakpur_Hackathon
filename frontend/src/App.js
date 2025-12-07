@@ -12,6 +12,8 @@ import Footer from './components/Footer';
 import Privacy from './pages/Privacy';
 import SecurityStandards from './pages/Security';
 import CookieAndTerms from './pages/CookieandTerms';
+import ChatPage from './pages/ChatPage';
+import NGOProfilesPage from './pages/NGOProfile';
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth();
@@ -33,6 +35,9 @@ function App() {
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/security" element={<SecurityStandards />} />
               <Route path="/cookie-terms" element={<CookieAndTerms />} />
+              <Route path="/chat" element={<ChatPage />} />
+              <Route path="/ngo-profiles" element={<NGOProfilesPage />} />
+              <Route path="/ngo-profiles/:incidentType" element={<NGOProfilesPage />} /> 
               <Route
                 path="/dashboard"
                 element={

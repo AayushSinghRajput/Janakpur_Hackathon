@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Upload,
   Shield,
@@ -30,6 +31,7 @@ const ReportForm = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -91,17 +93,44 @@ const ReportForm = () => {
       setMessage(`Report submitted successfully! Report ID: ${res.reportId}`);
       setMessageType("success");
 
-      // Reset form
-      setForm({
-        incidentTitle: "",
-        description: "",
-        dateTime: "",
-        location: "",
-        PhoneNumber: "",
-        urgencyLevel: "Normal", // Reset to default
-        consentToShareWithNGO: false,
-      });
-      setEvidenceFiles([]);
+      // NEW: Navigate to NGO profiles page after successful submission
+      if (res.incidentType && form.consentToShareWithNGO) {
+        // Wait 2 seconds to show success message, then redirect
+        setTimeout(() => {
+          navigate('/ngo-profiles', {
+            state: {
+              incidentType: res.incidentType,
+              reportId: res.reportId,
+              urgencyLevel: res.urgencyLevel
+            }
+          });
+        }, 2000);
+      } else if (form.consentToShareWithNGO && !res.incidentType) {
+        // If no incident type but consent given, show general NGOs
+        setTimeout(() => {
+          navigate('/ngo-profiles', {
+            state: {
+              incidentType: 'General',
+              reportId: res.reportId,
+              urgencyLevel: res.urgencyLevel
+            }
+          });
+        }, 2000);
+      }
+
+      // Reset form (only if not redirecting)
+      if (!form.consentToShareWithNGO) {
+        setForm({
+          incidentTitle: "",
+          description: "",
+          dateTime: "",
+          location: "",
+          PhoneNumber: "",
+          urgencyLevel: "Normal",
+          consentToShareWithNGO: false,
+        });
+        setEvidenceFiles([]);
+      }
     } catch (err) {
       console.error("❌ Error details:", err);
       console.error("❌ Full error:", err);
@@ -132,15 +161,33 @@ const ReportForm = () => {
           </p>
         </div>
 
-        {/* Security Assurance */}
+        {/* Updated Security Assurance with NGO note */}
         <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 mb-8 border border-gray-700">
-          <div className="flex items-center space-x-3">
-            <Lock className="h-5 w-5 text-green-400" />
-            <span className="text-sm text-gray-300">
-              End-to-end encrypted • No IP tracking • Zero-knowledge
-              architecture
-            </span>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Lock className="h-5 w-5 text-green-400" />
+              <span className="text-sm text-gray-300">
+                End-to-end encrypted • No IP tracking • Zero-knowledge architecture
+              </span>
+            </div>
+            {form.consentToShareWithNGO && (
+              <div className="flex items-center space-x-2 px-3 py-1 bg-blue-900/30 rounded-lg border border-blue-700/30">
+                <CheckCircle className="h-4 w-4 text-blue-400" />
+                <span className="text-sm text-blue-300">
+                  NGO support enabled
+                </span>
+              </div>
+            )}
           </div>
+          
+          {/* NGO Redirection Notice */}
+          {form.consentToShareWithNGO && (
+            <div className="mt-3 pt-3 border-t border-gray-700">
+              <p className="text-sm text-gray-300">
+                ✓ After submission, you'll be directed to relevant NGOs based on your report type
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -425,9 +472,16 @@ const ReportForm = () => {
                       ) : (
                         <Shield className="h-5 w-5" />
                       )}
-                      <span>
-                        Submit {form.urgencyLevel === "Emergency" ? "Emergency" : "Anonymous"} Report
-                      </span>
+                      <div className="flex flex-col items-center">
+                        <span>
+                          Submit {form.urgencyLevel === "Emergency" ? "Emergency" : "Anonymous"} Report
+                        </span>
+                        {form.consentToShareWithNGO && (
+                          <span className="text-xs text-white/70 mt-1">
+                            → You'll see relevant NGOs after submission
+                          </span>
+                        )}
+                      </div>
                     </div>
                   )}
                 </Button>
@@ -449,15 +503,31 @@ const ReportForm = () => {
                   ) : (
                     <AlertTriangle className="h-5 w-5 text-red-400" />
                   )}
-                  <p
-                    className={`${
-                      messageType === "success"
-                        ? "text-green-300"
-                        : "text-red-300"
-                    }`}
-                  >
-                    {message}
-                  </p>
+                  <div className="flex-1">
+                    <p
+                      className={`${
+                        messageType === "success"
+                          ? "text-green-300"
+                          : "text-red-300"
+                      }`}
+                    >
+                      {message}
+                    </p>
+                    
+                    {/* Show NGO redirect notice */}
+                    {messageType === "success" && form.consentToShareWithNGO && (
+                      <div className="mt-2 flex items-center space-x-2">
+                        <div className="animate-pulse">
+                          <svg className="h-4 w-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          </svg>
+                        </div>
+                        <span className="text-sm text-blue-300">
+                          Redirecting to relevant NGOs in 2 seconds...
+                        </span>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
@@ -465,6 +535,44 @@ const ReportForm = () => {
 
           {/* Side Panel */}
           <div className="space-y-6">
+            {/* NGO Benefits Card */}
+            {form.consentToShareWithNGO && (
+              <div className="bg-gradient-to-r from-blue-900/30 to-cyan-900/20 backdrop-blur-sm rounded-2xl p-6 border border-blue-700/30">
+                <h3 className="text-xl font-bold text-white mb-4 flex items-center space-x-2">
+                  <svg className="h-5 w-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>NGO Support Benefits</span>
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
+                    <span className="text-sm text-gray-300">
+                      Get matched with verified NGOs specialized for your incident type
+                    </span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
+                    <span className="text-sm text-gray-300">
+                      Direct contact information for immediate support
+                    </span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
+                    <span className="text-sm text-gray-300">
+                      Access to specialized services like counseling and legal aid
+                    </span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
+                    <span className="text-sm text-gray-300">
+                      Your privacy remains protected - NGOs see only anonymized reports
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            )}
+
             {/* Privacy Notice */}
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700">
               <h3 className="text-xl font-bold text-white mb-4 flex items-center space-x-2">
@@ -565,6 +673,11 @@ const ReportForm = () => {
           <p className="text-gray-400 text-sm">
             <Lock className="h-4 w-4 inline mr-1" />
             All reports are handled with utmost confidentiality and security.
+            {form.consentToShareWithNGO && (
+              <span className="ml-2 text-blue-300">
+                ✓ NGO support enabled
+              </span>
+            )}
           </p>
         </div>
       </div>

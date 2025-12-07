@@ -1,9 +1,11 @@
 // controllers/reportController.js
 const Report = require("../models/Report");
+const mlService = require('../utils/mlService');
 const { encrypt, decrypt, testEncryption } = require("../utils/encryption");
 const { uploadBufferToCloudinary } = require("../utils/cloudinary");
-const { classifyReport } = require("../utils/mlService");
 const { v4: uuidv4 } = require("uuid");
+
+
 
 // ==================== CREATE ====================
 exports.createReport = async (req, res) => {
@@ -113,11 +115,12 @@ exports.createReport = async (req, res) => {
       console.log("📁 No files uploaded");
     }
 
-    // 3. ML Classification (optional - only for incidentType if needed)
+    // 3. ML Classification using mlService
     let incidentType = "General"; // Default
     try {
       const reportText = `${incidentTitle} ${description} ${location}`;
-      const mlResult = await classifyReport(reportText);
+      // Call mlService directly (no separate classifyReport function needed)
+      const mlResult = await mlService.classifyReport(reportText);
       incidentType = mlResult.incidentType || "General";
       console.log(`🤖 ML Classification for incident type: ${incidentType}`);
     } catch (mlError) {
@@ -155,6 +158,7 @@ exports.createReport = async (req, res) => {
       reportId: report.reportId,
       note: "Save this report ID for future reference",
       urgencyLevel: report.urgencyLevel, // Send back for confirmation
+      incidentType: incidentType, // Also send ML classification result
     });
   } catch (err) {
     console.error("❌ Error creating encrypted report:", err);

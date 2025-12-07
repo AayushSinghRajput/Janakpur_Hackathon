@@ -136,7 +136,7 @@ const Footer = () => {
             
             <div className="text-center md:text-right">
               <p className="text-sm text-gray-400">
-                Committed to making communities safer through technology
+                Committed to making communities safer through technology.
               </p>
             </div>
           </div>
