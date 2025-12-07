@@ -14,6 +14,7 @@ import SecurityStandards from './pages/Security';
 import CookieAndTerms from './pages/CookieandTerms';
 import ChatPage from './pages/ChatPage';
 import NGOProfilesPage from './pages/NGOProfile';
+import AnalyticsPage from './pages/AnalyticsPage';
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth();
@@ -38,6 +39,7 @@ function App() {
               <Route path="/chat" element={<ChatPage />} />
               <Route path="/ngo-profiles" element={<NGOProfilesPage />} />
               <Route path="/ngo-profiles/:incidentType" element={<NGOProfilesPage />} /> 
+              <Route path="/analytics" element={<AnalyticsPage />} /> 
               <Route
                 path="/dashboard"
                 element={
