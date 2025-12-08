@@ -631,13 +631,13 @@ const NGODashboard = () => {
         </div>
       </div>
 
-      {/* Report Detail Modal - WITH LIGHT BACKGROUND COLORS */}
+      {/* Report Detail Modal - UPDATED WITH #F9F5FA BACKGROUND */}
       {selectedReport && (
-        <div className="fixed inset-0 bg-primary-text/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-background rounded-2xl border-2 border-primary-accent/30 shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-headings/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-[#F9F5FA] rounded-2xl border-2 border-primary-accent/30 shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-8">
-              {/* Modal Header with light background */}
-              <div className="flex items-center justify-between mb-8 pb-6 border-b border-borders bg-gradient-to-r from-borders/30 to-background rounded-t-xl p-6 -m-8 mb-8">
+              {/* Modal Header */}
+              <div className="flex items-center justify-between mb-8 pb-6 border-b border-borders/40 bg-gradient-to-r from-borders/20 to-[#F9F5FA] rounded-t-xl p-6 -m-8 mb-8">
                 <div className="flex items-center space-x-4">
                   <div
                     className={`w-4 h-4 rounded-full flex-shrink-0 ${
@@ -665,8 +665,8 @@ const NGODashboard = () => {
                 </button>
               </div>
 
-              {/* Report Info Badges with light background */}
-              <div className="flex flex-wrap items-center gap-3 mb-8 bg-borders/20 p-4 rounded-xl">
+              {/* Report Info Badges */}
+              <div className="flex flex-wrap items-center gap-3 mb-8 bg-borders/10 p-4 rounded-xl">
                 <span
                   className={`px-4 py-2 rounded-full text-sm font-medium ${
                     selectedReport.urgencyLevel === "Emergency"
@@ -698,18 +698,18 @@ const NGODashboard = () => {
                 </span>
               </div>
 
-              {/* Details Grid with enhanced backgrounds */}
+              {/* Details Grid */}
               <div className="grid md:grid-cols-2 gap-8 mb-10">
                 <div className="space-y-6">
                   {/* Date & Time */}
-                  <div className="bg-gradient-to-br from-background to-borders/30 rounded-xl p-5 border border-borders">
+                  <div className="bg-white/50 backdrop-blur-sm rounded-xl p-5 border border-borders/40">
                     <div className="flex items-center space-x-3 mb-3">
                       <div className="w-10 h-10 bg-secondary-accent/20 rounded-lg flex items-center justify-center">
                         <Calendar className="h-5 w-5 text-secondary-accent" />
                       </div>
                       <div>
                         <h4 className="font-semibold text-headings">Date & Time</h4>
-                        <p className="text-primary-text font-medium">
+                        <p className="text-headings font-medium">
                           {new Date(selectedReport.dateTime).toLocaleString()}
                         </p>
                       </div>
@@ -720,14 +720,14 @@ const NGODashboard = () => {
                   </div>
 
                   {/* Location */}
-                  <div className="bg-gradient-to-br from-background to-borders/30 rounded-xl p-5 border border-borders">
+                  <div className="bg-white/50 backdrop-blur-sm rounded-xl p-5 border border-borders/40">
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 bg-primary-accent/20 rounded-lg flex items-center justify-center">
                         <MapPin className="h-5 w-5 text-primary-accent" />
                       </div>
                       <div>
                         <h4 className="font-semibold text-headings">Location</h4>
-                        <p className="text-primary-text font-medium">
+                        <p className="text-headings font-medium">
                           {selectedReport.location || "Not specified"}
                         </p>
                       </div>
@@ -738,14 +738,14 @@ const NGODashboard = () => {
                 <div className="space-y-6">
                   {/* Contact Number */}
                   {selectedReport.PhoneNumber && (
-                    <div className="bg-gradient-to-br from-background to-borders/30 rounded-xl p-5 border border-borders">
+                    <div className="bg-white/50 backdrop-blur-sm rounded-xl p-5 border border-borders/40">
                       <div className="flex items-center space-x-3 mb-3">
                         <div className="w-10 h-10 bg-success/20 rounded-lg flex items-center justify-center">
                           <Phone className="h-5 w-5 text-success" />
                         </div>
                         <div>
                           <h4 className="font-semibold text-headings">Contact Number</h4>
-                          <p className="text-primary-text font-medium">
+                          <p className="text-headings font-medium">
                             {selectedReport.PhoneNumber}
                           </p>
                         </div>
@@ -757,7 +757,7 @@ const NGODashboard = () => {
                   )}
 
                   {/* Consent Status */}
-                  <div className="bg-gradient-to-br from-background to-borders/30 rounded-xl p-5 border border-borders">
+                  <div className="bg-white/50 backdrop-blur-sm rounded-xl p-5 border border-borders/40">
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 bg-primary-accent/20 rounded-lg flex items-center justify-center">
                         <Shield className="h-5 w-5 text-primary-accent" />
@@ -779,7 +779,7 @@ const NGODashboard = () => {
                 </div>
               </div>
 
-              {/* Description with enhanced background */}
+              {/* Description */}
               <div className="mb-10">
                 <div className="flex items-center space-x-2 mb-4">
                   <div className="w-1 h-6 bg-primary-accent rounded-full"></div>
@@ -787,8 +787,8 @@ const NGODashboard = () => {
                     Incident Description
                   </h4>
                 </div>
-                <div className="bg-gradient-to-br from-background to-borders/30 rounded-xl p-6 border border-borders">
-                  <p className="text-primary-text leading-relaxed whitespace-pre-line">
+                <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 border border-borders/40">
+                  <p className="text-headings leading-relaxed whitespace-pre-line">
                     {selectedReport.description || "No description provided."}
                   </p>
                 </div>
@@ -798,7 +798,7 @@ const NGODashboard = () => {
               {selectedReport.evidenceUrls &&
                 selectedReport.evidenceUrls.length > 0 && (
                   <div className="mb-10">
-                    <div className="flex items-center justify-between mb-6 bg-borders/20 p-4 rounded-xl">
+                    <div className="flex items-center justify-between mb-6 bg-borders/10 p-4 rounded-xl">
                       <div className="flex items-center space-x-3">
                         <div className="w-2 h-8 bg-secondary-accent rounded-full"></div>
                         <h4 className="text-lg font-semibold text-headings">
@@ -822,11 +822,11 @@ const NGODashboard = () => {
                         return (
                           <div
                             key={index}
-                            className="w-full bg-gradient-to-br from-background to-borders/20 rounded-xl border-2 border-borders hover:border-primary-accent transition-all duration-300 overflow-hidden group cursor-pointer"
+                            className="w-full bg-white/50 backdrop-blur-sm rounded-xl border-2 border-borders/40 hover:border-primary-accent transition-all duration-300 overflow-hidden group cursor-pointer"
                             onClick={() => openEvidenceModal(index)}
                           >
                             {/* Preview Container */}
-                            <div className="relative w-full bg-gradient-to-br from-borders/30 to-borders/10 overflow-hidden">
+                            <div className="relative w-full bg-gradient-to-br from-borders/20 to-borders/5 overflow-hidden">
                               {isImage ? (
                                 <div className="relative w-full h-80">
                                   <img
@@ -841,7 +841,7 @@ const NGODashboard = () => {
                                     }}
                                   />
                                   {/* Overlay */}
-                                  <div className="absolute inset-0 bg-gradient-to-t from-primary-text/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                  <div className="absolute inset-0 bg-gradient-to-t from-headings/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                                     <div className="flex items-center space-x-2 text-white">
                                       <Maximize2 className="h-5 w-5" />
                                       <span className="text-lg font-medium">
@@ -866,7 +866,7 @@ const NGODashboard = () => {
                                 </div>
                               ) : (
                                 <div className="relative w-full h-48 flex flex-col items-center justify-center p-8">
-                                  <div className="w-20 h-20 bg-borders/60 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:bg-borders/80 transition-colors">
+                                  <div className="w-20 h-20 bg-borders/40 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:bg-borders/60 transition-colors">
                                     <IconComponent className="h-12 w-12 text-primary-accent" />
                                   </div>
                                   <div className="mt-6 text-center">
@@ -895,8 +895,8 @@ const NGODashboard = () => {
                               </div>
                             </div>
 
-                            {/* File Info with light background */}
-                            <div className="p-6 bg-gradient-to-br from-background to-borders/10">
+                            {/* File Info */}
+                            <div className="p-6 bg-white/30">
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center space-x-3">
                                   <IconComponent className="h-5 w-5 text-primary-accent" />
@@ -930,8 +930,8 @@ const NGODashboard = () => {
                   </div>
                 )}
 
-              {/* Action Buttons with light background */}
-              <div className="pt-8 border-t border-borders bg-gradient-to-br from-borders/10 to-background p-6 rounded-xl">
+              {/* Action Buttons */}
+              <div className="pt-8 border-t border-borders/40 bg-white/30 backdrop-blur-sm p-6 rounded-xl">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
                     {/* Mark as Resolved Button */}
@@ -975,14 +975,14 @@ const NGODashboard = () => {
                     </Button>
 
                     {showDownloadOptions && (
-                      <div className="absolute bottom-full right-0 mb-2 w-56 bg-gradient-to-br from-background to-borders/20 border border-borders rounded-xl shadow-2xl z-10 overflow-hidden">
+                      <div className="absolute bottom-full right-0 mb-2 w-56 bg-white border border-borders/40 rounded-xl shadow-2xl z-10 overflow-hidden">
                         <div className="p-2">
                           <button
                             onClick={() => {
                               handleDownloadReport(selectedReport, "pdf");
                               setShowDownloadOptions(false);
                             }}
-                            className="w-full text-left px-4 py-4 text-sm text-primary-text hover:bg-primary-accent/10 rounded-lg flex items-center space-x-3 transition-colors bg-gradient-to-r from-background to-borders/10"
+                            className="w-full text-left px-4 py-4 text-sm text-headings hover:bg-primary-accent/10 rounded-lg flex items-center space-x-3 transition-colors"
                           >
                             <div className="w-10 h-10 bg-error/20 rounded-lg flex items-center justify-center">
                               <FileText className="h-5 w-5 text-error" />
@@ -999,7 +999,7 @@ const NGODashboard = () => {
                               handleDownloadReport(selectedReport, "html");
                               setShowDownloadOptions(false);
                             }}
-                            className="w-full text-left px-4 py-4 text-sm text-primary-text hover:bg-primary-accent/10 rounded-lg flex items-center space-x-3 transition-colors bg-gradient-to-r from-background to-borders/10"
+                            className="w-full text-left px-4 py-4 text-sm text-headings hover:bg-primary-accent/10 rounded-lg flex items-center space-x-3 transition-colors"
                           >
                             <div className="w-10 h-10 bg-primary-accent/20 rounded-lg flex items-center justify-center">
                               <svg
@@ -1022,7 +1022,7 @@ const NGODashboard = () => {
                               handleDownloadReport(selectedReport, "text");
                               setShowDownloadOptions(false);
                             }}
-                            className="w-full text-left px-4 py-4 text-sm text-primary-text hover:bg-primary-accent/10 rounded-lg flex items-center space-x-3 transition-colors bg-gradient-to-r from-background to-borders/10"
+                            className="w-full text-left px-4 py-4 text-sm text-headings hover:bg-primary-accent/10 rounded-lg flex items-center space-x-3 transition-colors"
                           >
                             <div className="w-10 h-10 bg-success/20 rounded-lg flex items-center justify-center">
                               <svg
@@ -1042,7 +1042,7 @@ const NGODashboard = () => {
                           </button>
                         </div>
                         {/* Arrow pointing to button */}
-                        <div className="absolute -bottom-1 right-4 w-3 h-3 bg-gradient-to-br from-background to-borders/20 transform rotate-45 border-r border-b border-borders"></div>
+                        <div className="absolute -bottom-1 right-4 w-3 h-3 bg-white transform rotate-45 border-r border-b border-borders/40"></div>
                       </div>
                     )}
                   </div>
@@ -1078,7 +1078,7 @@ const NGODashboard = () => {
         selectedReport &&
         selectedReport.evidenceUrls &&
         selectedEvidenceIndex !== null && (
-          <div className="fixed inset-0 bg-primary-text/95 backdrop-blur-sm z-[60] flex items-center justify-center">
+          <div className="fixed inset-0 bg-headings/95 backdrop-blur-sm z-[60] flex items-center justify-center">
             <div className="relative w-full h-full flex flex-col">
               {/* Close Button */}
               <button
@@ -1161,7 +1161,7 @@ const NGODashboard = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="bg-gradient-to-br from-borders/50 to-borders/30 backdrop-blur-sm rounded-xl p-12 border border-borders max-w-2xl mx-auto">
+                    <div className="bg-white backdrop-blur-sm rounded-xl p-12 border border-borders max-w-2xl mx-auto">
                       <div className="text-center">
                         <div className="w-24 h-24 bg-primary-accent/20 rounded-full flex items-center justify-center mx-auto mb-8">
                           <FileText className="h-12 w-12 text-primary-accent" />
@@ -1217,6 +1217,6 @@ const NGODashboard = () => {
         )}
     </div>
   );
-};
+}; 
 
 export default NGODashboard;
