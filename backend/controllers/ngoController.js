@@ -13,8 +13,6 @@ const generateToken = (id) => {
 // Register NGO (Keep your existing logic)
 exports.registerNGO = async (req, res) => {
   try {
-    console.log("Registration request received:", req.body);
-
     const { ngoName, email, password, confirmPassword } = req.body;
 
     // Input validation
@@ -41,11 +39,6 @@ exports.registerNGO = async (req, res) => {
       });
     }
 
-    console.log(
-      "Checking if NGO exists with email:",
-      email.toLowerCase().trim()
-    );
-
     // Check if NGO already exists
     const ngoExists = await NGO.findOne({ email: email.toLowerCase().trim() });
     if (ngoExists) {
@@ -55,13 +48,12 @@ exports.registerNGO = async (req, res) => {
       });
     }
 
-    console.log("Hashing password...");
 
     // Hash password manually before saving
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    console.log("Creating NGO...");
+    
 
     // Create NGO with hashed password
     const ngo = await NGO.create({
@@ -71,8 +63,6 @@ exports.registerNGO = async (req, res) => {
       verificationStatus: false,
       role: "ngo",
     });
-
-    console.log("NGO created successfully with ID:", ngo._id);
 
     // Also create an NGO profile with basic info
     await NGOProfile.create({
@@ -88,7 +78,6 @@ exports.registerNGO = async (req, res) => {
       verified: false,
     });
 
-    console.log("NGO profile created");
 
     // Generate token for immediate login
     const token = generateToken(ngo._id);
@@ -137,10 +126,9 @@ exports.registerNGO = async (req, res) => {
   }
 };
 
-// Login NGO (Keep your existing logic)
+// Login NGO 
 exports.loginNGO = async (req, res) => {
   try {
-    console.log("Login request received for email:", req.body.email);
 
     const { email, password } = req.body;
 
@@ -151,8 +139,6 @@ exports.loginNGO = async (req, res) => {
         message: "Please provide email and password",
       });
     }
-
-    console.log("Finding NGO with email:", email.toLowerCase().trim());
 
     // Find NGO by email (case insensitive)
     const ngo = await NGO.findOne({ email: email.toLowerCase().trim() });
@@ -165,8 +151,6 @@ exports.loginNGO = async (req, res) => {
       });
     }
 
-    console.log("NGO found, checking password for ID:", ngo._id);
-
     // Check if password matches using bcrypt directly
     const isPasswordValid = await bcrypt.compare(password, ngo.password);
 
@@ -177,8 +161,6 @@ exports.loginNGO = async (req, res) => {
         message: "Invalid email or password",
       });
     }
-
-    console.log("Password is correct, generating token...");
 
     // Generate JWT token
     const token = generateToken(ngo._id);
@@ -204,7 +186,7 @@ exports.loginNGO = async (req, res) => {
   }
 };
 
-// Get NGOs by incident type (UPDATED: Use NGOProfile model)
+// Get NGOs by incident type 
 exports.getNGOsByIncidentType = async (req, res) => {
   try {
     const { incidentType } = req.params;
@@ -237,7 +219,6 @@ exports.getNGOsByIncidentType = async (req, res) => {
       .select("-__v")
       .sort({ rating: -1 });
 
-    console.log(`✅ Found ${ngoProfiles.length} NGOs for ${incidentType}`);
 
     res.status(200).json({
       success: true,

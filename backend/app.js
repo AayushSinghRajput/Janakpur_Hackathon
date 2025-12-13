@@ -9,12 +9,12 @@ const errorHandler = require('./middlewares/errorHandler');
 // Load environment variables FIRST
 dotenv.config();
 
-console.log('\n🎯 Environment Variables Check (Main File):');
-console.log('CLOUDINARY_CLOUD_NAME:', process.env.CLOUDINARY_CLOUD_NAME || 'NOT FOUND');
-console.log('MONGO_URI exists:', !!process.env.MONGO_URI);
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin:'*',
+    credentials:true
+}));
 app.use(express.json());
 
 // Database connection

@@ -3,10 +3,6 @@ const cloudinary = require('cloudinary').v2;
 // Make sure dotenv is loaded FIRST in this file
 require('dotenv').config();
 
-console.log('\n🔧 Cloudinary Configuration Check:');
-console.log('CLOUDINARY_CLOUD_NAME:', process.env.CLOUDINARY_CLOUD_NAME ? `"${process.env.CLOUDINARY_CLOUD_NAME}"` : 'Not set');
-console.log('CLOUDINARY_API_KEY exists:', !!process.env.CLOUDINARY_API_KEY);
-console.log('CLOUDINARY_API_SECRET exists:', !!process.env.CLOUDINARY_API_SECRET);
 
 // Check if Cloudinary is configured
 const isCloudinaryConfigured = () => {

@@ -1,8 +1,7 @@
 // Load environment variables at the VERY BEGINNING
 require('dotenv').config();
 
-console.log('🚀 Starting server...');
-console.log('Environment:', process.env.NODE_ENV || 'development');
+
 
 const app = require('./app');
 

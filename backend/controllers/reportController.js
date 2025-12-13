@@ -1,21 +1,12 @@
-// controllers/reportController.js
 const Report = require("../models/Report");
-const mlService = require('../utils/mlService');
+const mlService = require("../utils/mlService");
 const { encrypt, decrypt, testEncryption } = require("../utils/encryption");
 const { uploadBufferToCloudinary } = require("../utils/cloudinary");
 const { v4: uuidv4 } = require("uuid");
 
-
-
 // ==================== CREATE ====================
 exports.createReport = async (req, res) => {
   try {
-    console.log("🔐 Creating encrypted report...");
-    console.log("📝 Request body:", req.body);
-    console.log("📎 Files received:", req.files ? req.files.length : 0);
-
-    // Test encryption
-    console.log("Testing encryption system...");
     const encryptionWorking = testEncryption();
     if (!encryptionWorking) {
       console.error("Encryption system is not working");
@@ -24,8 +15,6 @@ exports.createReport = async (req, res) => {
         message: "Security system error. Please contact administrator.",
       });
     }
-
-    console.log("Encryption system is working.");
 
     // ✅ Get ALL expected fields from request (matching frontend form)
     const {
@@ -46,15 +35,6 @@ exports.createReport = async (req, res) => {
           "Missing required fields: Title, Description, Date/Time, and Location are required.",
       });
     }
-
-    console.log("✅ Validated input data");
-    console.log(`📊 Urgency Level: ${urgencyLevel}`);
-    console.log(
-      `📱 Phone Number: ${PhoneNumber ? "Provided" : "Not provided"}`
-    );
-
-    // 1. ENCRYPT all sensitive data
-    console.log("🔐 Encrypting sensitive data...");
 
     // Encrypt required fields
     const encryptedIncidentTitle = encrypt(incidentTitle);
@@ -80,16 +60,13 @@ exports.createReport = async (req, res) => {
     let encryptedPhoneNumber = ""; // 🔧 Changed variable name
     if (PhoneNumber && PhoneNumber.trim() !== "") {
       encryptedPhoneNumber = encrypt(PhoneNumber.trim());
-      console.log("✅ Phone number encrypted");
     }
 
     // 2. Process and upload files (encrypt URLs)
     let encryptedEvidenceUrls = [];
     if (req.files && req.files.length > 0) {
-      console.log(`📁 Processing ${req.files.length} file(s)...`);
       for (const file of req.files) {
         try {
-          console.log(`Uploading: ${file.originalname} (${file.size} bytes)`);
           const result = await uploadBufferToCloudinary(
             file.buffer,
             file.originalname
@@ -122,13 +99,11 @@ exports.createReport = async (req, res) => {
       // Call mlService directly (no separate classifyReport function needed)
       const mlResult = await mlService.classifyReport(reportText);
       incidentType = mlResult.incidentType || "General";
-      console.log(`🤖 ML Classification for incident type: ${incidentType}`);
     } catch (mlError) {
       console.warn("⚠️ ML classification failed:", mlError.message);
     }
 
     // 4. Create the encrypted report in database
-    console.log("💾 Saving encrypted report to database...");
 
     const reportData = {
       encryptedIncidentTitle,
@@ -145,11 +120,6 @@ exports.createReport = async (req, res) => {
     };
 
     const report = await Report.create(reportData);
-
-    console.log(`✅ Encrypted report created! ID: ${report.reportId}`);
-    console.log(
-      `📊 Report Details - Type: ${incidentType}, Urgency: ${urgencyLevel}`
-    );
 
     // 5. Return success
     res.status(201).json({
@@ -234,8 +204,6 @@ exports.getAllReports = async (req, res) => {
       .limit(parseInt(limit))
       .populate("assignedTo", "ngoName email");
 
-    console.log(`🔓 Decrypting ${reports.length} reports for NGO access...`);
-
     // DECRYPT all sensitive data for NGO viewing
     const decryptedReports = reports
       .map((report) => {
@@ -281,8 +249,6 @@ exports.getAllReports = async (req, res) => {
       })
       .filter((report) => report !== null);
 
-    console.log(`✅ Successfully decrypted ${decryptedReports.length} reports`);
-
     res.json({
       success: true,
       count: decryptedReports.length,
@@ -323,8 +289,6 @@ exports.getReportById = async (req, res) => {
       });
     }
 
-    console.log(`🔓 Decrypting report ${report.reportId}...`);
-
     // DECRYPT all sensitive data
     const decryptedReport = {
       reportId: report.reportId,
@@ -357,8 +321,6 @@ exports.getReportById = async (req, res) => {
       assignedTo: report.assignedTo,
       notes: report.notes,
     };
-
-    console.log(`✅ Successfully decrypted report ${report.reportId}`);
 
     res.json({
       success: true,
@@ -426,8 +388,6 @@ exports.updateReport = async (req, res) => {
       { new: true, runValidators: true }
     ).populate("assignedTo", "ngoName email");
 
-    console.log(`✅ Report ${id} updated successfully`);
-
     res.json({
       success: true,
       message: "Report updated successfully",
@@ -491,7 +451,6 @@ exports.deleteReport = async (req, res) => {
       { new: true }
     );
 
-    console.log(`🗑️ Report ${id} soft-deleted by NGO ${ngoId}`);
 
     res.json({
       success: true,
@@ -540,7 +499,7 @@ exports.restoreReport = async (req, res) => {
       { new: true }
     );
 
-    console.log(`↩️ Report ${id} restored successfully`);
+
 
     res.json({
       success: true,
