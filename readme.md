@@ -102,14 +102,14 @@ This platform addresses these gaps by providing a secure, anonymous environment 
 
 ## *Project Structure*
 
-
+```
 anonymous-platform/
 ├── admin_panel/        # Dashboard for NGOs & administrators
 ├── backend/            # Node.js + Express.js (REST API)
 ├── backend_fastapi/    # FastAPI microservices (AI/ML)
 ├── frontend/           # React.js user interface
 └── README.md
-
+```
 
 
 ### *Folder Descriptions*
